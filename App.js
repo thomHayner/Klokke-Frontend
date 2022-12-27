@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import { Orbitron_900Black, useFonts } from '@expo-google-fonts/orbitron';
-import BottomNav from './components/BottomNav';
+import BottomNav from './components/Nav/BottomNav';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();

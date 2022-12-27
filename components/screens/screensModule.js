@@ -1,4 +1,4 @@
-import LogoTitle from "./LogoTitle";
+import LogoTitle from "../Nav/LogoTitle";
 import TimersScreen from "./TimersScreen";
 import ReportsScreen from "./ReportsScreen";
 import SettingsScreen from "./SettingsScreen";
