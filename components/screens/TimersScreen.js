@@ -16,7 +16,7 @@ export default function TimersScreen() {
           height: '100%',
         }}
       />
-      
+
       <Text>Timers!</Text>
     </SafeAreaView>
   );
