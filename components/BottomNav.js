@@ -11,6 +11,9 @@ export default function BottomNav() {
       screenOptions={{
         headerLeft: () => <LogoTitle />,
         headerTitle: () => {},
+        headerStyle: {
+          backgroundColor: '#FF8624',
+        }
       }}
     >
       <Tab.Screen
@@ -18,14 +21,14 @@ export default function BottomNav() {
         component={TimersScreen}
         options={{
           tabBarIcon: () => <MaterialIcons name="timer" size={24} color="black" />,
-          tabBarBadge: () => {},
+          tabBarBadge: null, // number, not a function, just the number returned, use React.context
         }}
       />
       <Tab.Screen
         name="Reports"
         component={ReportsScreen}
         options={{
-          tabBarIcon: () => <MaterialIcons name="insert-chart" size={24} color="black" />
+          tabBarIcon: () => <MaterialIcons name="insert-chart-outlined" size={24} color="black" />
         }}
       />
       <Tab.Screen
