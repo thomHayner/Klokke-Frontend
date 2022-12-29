@@ -1,7 +1,7 @@
 import LogoTitle from "../Nav/LogoTitle";
 import TimersScreen from "./TimersScreen";
-import ReportsScreen from "./ReportsScreen";
-import SettingsScreen from "./SettingsScreen";
+import ReportsScreen from "./reports/ReportsScreen";
+import SettingsScreen from "./settings/SettingsScreen";
 
 export {
   LogoTitle,
