@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
 import { LogoTitle, TimersScreen, ReportsScreen, SettingsScreen } from '../screens/screensModule';
-import { TimersDropdown } from './TimersDropdown';
 
 const Tab = createBottomTabNavigator();
 
