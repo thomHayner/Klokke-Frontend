@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Text, StyleSheet, TextInput, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import ListSelect from './timers/ListSelect';
-import MenuIcon from './timers/MenuIcon';
+import ListSelect from './ListSelect';
+import MenuIcon from './MenuIcon';
 
 const LISTS = [
   {
