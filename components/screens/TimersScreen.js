@@ -1,8 +1,36 @@
-import { Text, StyleSheet } from 'react-native';
+import * as React from 'react';
+import { Text, StyleSheet, TextInput, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
+import ListSelect from './timers/ListSelect';
+import MenuIcon from './timers/MenuIcon';
+
+const LISTS = [
+  {
+    label: 'first',
+    value: 'first',
+  },
+  {
+    label: 'second',
+    value: 'second',
+  },
+  {
+    label: 'third',
+    value: 'third',
+  },
+  {
+    label: 'fourth',
+    value: 'fourth',
+  },
+];
 
 export default function TimersScreen() {
+  const [selectedList, setSelectedList] = React.useState();
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const toggleVisible = () => {
+    setVisible(!visible);
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <LinearGradient
@@ -16,8 +44,16 @@ export default function TimersScreen() {
           height: '100%',
         }}
       />
-
+      
+      <MenuIcon />
       <Text>Timers!</Text>
+      <ListSelect
+        LISTS={LISTS}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        selectedList={selectedList}
+        setSelectedList={setSelectedList}
+      />
     </SafeAreaView>
   );
 };
