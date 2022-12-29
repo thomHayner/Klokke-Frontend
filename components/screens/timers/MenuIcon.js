@@ -5,10 +5,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function MenuIcon() {
   return (
     <View style={styles.menuIconWrapper}>
+        <Text>Select List</Text>
         <Pressable
         // onPress={toggleVisible}
         >
-          <Text>Select List</Text>
           <MaterialIcons name="menu" size={24} color="black" />
         </Pressable>
     </View>
@@ -17,6 +17,10 @@ export default function MenuIcon() {
 
 const styles = StyleSheet.create({
   menuIconWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
     paddingRight: 10,
   }
 });
