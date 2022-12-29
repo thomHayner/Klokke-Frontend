@@ -1,5 +1,5 @@
 import LogoTitle from "../Nav/LogoTitle";
-import TimersScreen from "./TimersScreen";
+import TimersScreen from "./timers/TimersScreen";
 import ReportsScreen from "./reports/ReportsScreen";
 import SettingsScreen from "./settings/SettingsScreen";
 
