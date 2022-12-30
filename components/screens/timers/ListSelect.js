@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Picker } from '@react-native-picker/picker';
@@ -6,22 +6,22 @@ import { Picker } from '@react-native-picker/picker';
 export default function ListSelect({
   LISTS,
   modalVisible,
-  setModalVisible,
   selectedList,
-  setSelectedList
+  setSelectedList,
+  toggleVisible,
 }) {
   return (
     <Modal
       animationType="slide"
-      transparent={false}
+      transparent={true}
       visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
+      onRequestClose={toggleVisible}
     >
       <SafeAreaView style={styles.safeAreaContainer}>
         <View>
-          <MaterialIcons name="close" size={24} color="black" />
+          <Pressable onPress={toggleVisible}>
+            <MaterialIcons name="close" size={24} color="black" />
+          </Pressable>
         </View>
         {/* <TextInput
           style={{ width: '100%' }}

@@ -28,7 +28,7 @@ export default function TimersScreen() {
   const [selectedList, setSelectedList] = React.useState();
   const [modalVisible, setModalVisible] = React.useState(false);
   const toggleVisible = () => {
-    setVisible(!visible);
+    setModalVisible(!modalVisible);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function TimersScreen() {
         }}
       />
       
-      <MenuIcon />
+      <MenuIcon toggleVisible={toggleVisible} />
       <Text>Timers!</Text>
       <ListSelect
         LISTS={LISTS}
@@ -53,6 +53,7 @@ export default function TimersScreen() {
         setModalVisible={setModalVisible}
         selectedList={selectedList}
         setSelectedList={setSelectedList}
+        toggleVisible={toggleVisible}
       />
     </SafeAreaView>
   );
