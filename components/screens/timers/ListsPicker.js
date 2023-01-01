@@ -2,8 +2,9 @@ import { Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Picker } from '@react-native-picker/picker';
+import ListInput from './ListInput';
 
-export default function ListSelect({
+export default function ListsPicker({
   LISTS,
   modalVisible,
   selectedList,
@@ -13,37 +14,37 @@ export default function ListSelect({
   return (
     <Modal
       animationType="slide"
-      transparent={true}
+      transparent={false}
       visible={modalVisible}
       onRequestClose={toggleVisible}
     >
       <SafeAreaView style={styles.safeAreaContainer}>
-        <View>
-          <Pressable onPress={toggleVisible}>
-            <MaterialIcons name="close" size={24} color="black" />
-          </Pressable>
+        <View style={styles.row}>
+          <ListInput />
+          {/* <View style={styles.closeButton}> */}
+            <Pressable onPress={toggleVisible}>
+              <MaterialIcons name="close" size={24} color="black" />
+            </Pressable>
+          {/* </View> */}
         </View>
-        {/* <TextInput
-          style={{ width: '100%' }}
-          value='uhuhuhtrctfcc'
-          onChangeText={()=>{}}
-        /> */}
+        
         <Picker
           selectedValue={selectedList}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedList(itemValue)
           }
           // mode='dropdown'
-          // prompt
+          numberOfLines={3}
+          prompt='Select a List'
           style={{
             width: '100%',
-            // height: 56,
             borderWidth: 1,
             borderColor: 'red',
-            borderRadius: 5,
-            alignSelf: 'top',
+            // borderRadius: 5,
+            // alignSelf: 'top',
           }}
         >
+          <ListInput />
           {LISTS.map((item)=> <Picker.Item label={item.label} value={item.value} key={item.label.toString()} />)}
         </Picker>
       </SafeAreaView>
@@ -57,7 +58,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 40,
+    width: '80%',
+  },
   closeButton: {
-    alignSelf: 'end',
+    // alignSelf: 'end',
+    height: 40,
   },
 });
