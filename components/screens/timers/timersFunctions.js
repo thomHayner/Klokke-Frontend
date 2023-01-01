@@ -67,68 +67,88 @@ const getOverallElapsedTime = (timer, serverTimestamp) => {
 
 //// [START / STOP] ////
 const handleTimer = (timer, timers, setTimers, serverTimestamp) => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => item.name === timer.name && item.id === timer.id);
+  if (!timer.completed) {
+    let tempTimers = [...timers];
+    let index = tempTimers.findIndex(item => (
+      item.name === timer.name && item.id === timer.id
+    ));
 
-  console.log('handleTimerPress: ' + timer.isRunning)
-  
-  if (timer.isRunning) {
-    tempTimers[index].stop = serverTimestamp;
-    tempTimers[index].isRunning = false;
-    tempTimers[index].elapsed = tempTimers[index].elapsed + (tempTimers[index].stop - tempTimers[index].start);
-    return setTimers(tempTimers);
-  }
+    console.log('handleTimerPress: ' + timer.isRunning)
+    
+    if (timer.isRunning) {
+      tempTimers[index].stop = serverTimestamp;
+      tempTimers[index].isRunning = false;
+      tempTimers[index].elapsed = tempTimers[index].elapsed + (tempTimers[index].stop - tempTimers[index].start);
+      return setTimers(tempTimers)
+    };
 
-  if (!timer.isRunning) {
-    tempTimers[index].start = serverTimestamp;
-    tempTimers[index].isRunning = true;
-    return setTimers(tempTimers);
-  }
+    if (!timer.isRunning) {
+      tempTimers[index].start = serverTimestamp;
+      tempTimers[index].isRunning = true;
+      return setTimers(tempTimers)
+    };
+  };
 };
 
 //// [DELETE] ////
 const deleteTimer = (timer, timers, setTimers) => {
   let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => item.name === timer.name && item.id === timer.id);
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
 
   tempTimers.splice(index, 1);
 
-  return setTimers(tempTimers);
+  return setTimers(tempTimers)
 };
 
 //// [RESET] ////
 const resetTimer = (timer, timers, setTimers) => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => item.name === timer.name && item.id === timer.id);
+  if (!timer.completed) {
+    let tempTimers = [...timers];
+    let index = tempTimers.findIndex(item => (
+      item.name === timer.name && item.id === timer.id
+    ));
+    
 
-  tempTimers[index] = {
-    ...tempTimers[index],
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  }
+    tempTimers[index] = {
+      ...tempTimers[index],
+      isRunning: false,
+      start: 0,
+      stop: 0,
+      elapsed: 0,
+    };
 
-  console.log(tempTimers[index])
-  return setTimers(tempTimers);
+    return setTimers(tempTimers)
+  };
 };
 
 //// [MARK AS COMPLETED] ////
-const completeTimer = () => {
+const handleCompleteTimer = (timer, timers, setTimers) => {
   let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => item.name === timer.name && item.id === timer.id);
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
+
+  tempTimers[index].completed = !tempTimers[index].completed
+  
+  return setTimers(tempTimers);
 };
 
 //// [RENAME] ////
 const renameTimer = () => {
   let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => item.name === timer.name && item.id === timer.id);
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
 };
 
 //// [CHANGE PLACE IN LIST] ////
 const changeTimerPosition = () => {
   let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => item.name === timer.name && item.id === timer.id);
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
 };
 
 export {
@@ -136,7 +156,7 @@ export {
   handleTimer,
   deleteTimer,
   resetTimer,
-  completeTimer,
+  handleCompleteTimer,
   renameTimer,
   changeTimerPosition,
 }
