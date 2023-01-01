@@ -2,13 +2,9 @@ import * as React from 'react';
 import { Text, StyleSheet, View, } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ListsDropdown from './ListsDropdown';
+import TimersList from './TimersList';
 
 export default function TimersScreen() {
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const toggleVisible = () => {
-    setModalVisible(!modalVisible);
-  };
-
   return (
     <View style={styles.safeAreaContainer}>
       <LinearGradient
@@ -22,8 +18,11 @@ export default function TimersScreen() {
           height: '100%',
         }}
       />
+
       <ListsDropdown />
-      <Text>Timers!</Text>
+
+      <TimersList />
+
     </View>
   );
 };
