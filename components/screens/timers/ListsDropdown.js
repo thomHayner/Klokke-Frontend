@@ -26,12 +26,31 @@ const DUMMY_LISTS = [
 
 export default function ListsDropdown() {
   const [lists, setLists] = React.useState([])
-  const [selectedList, setSelectedList] = React.useState();
+  const [selectedList, setSelectedList] = React.useState(false);
 
+  //// [ADD NEW LIST FUNCTION] ////
+  const addNewList = () => {
+    let tempLists = [...timers];
+
+    tempLists.push({
+      label: 'fifth',
+      value: 'fifth',
+    },);
+
+    setLists(tempLists);
+  };
+
+  //// [HANDLE SELECTING A NEW LIST] ////
+  const handleListSelect = (list) => {
+    setSelectedList(list);
+  };
+
+  //// [FETCH DATA] ////
   React.useEffect(() => {
     setLists(DUMMY_LISTS)
   }, []);
 
+  //// [COMPONENT TO RENDER IF LISTS IS EMPTY] ////
   const RenderEmpty = () => {
     return (
       <View style={styles.emptyContainer}>
@@ -52,7 +71,7 @@ export default function ListsDropdown() {
           // onEndReachedThreshold: 0.5,
         }}
         labelField='label'
-        onChange={(list) => setSelectedList(list)}
+        onChange={(list) => handleListSelect(list)}
         placeholder='All Timers'
         search
         searchPlaceholder='Search Lists'
