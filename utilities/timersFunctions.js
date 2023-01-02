@@ -65,6 +65,57 @@ const getOverallElapsedTime = (timer, serverTimestamp) => {
   return timer.elapsed + (serverTimestamp - timer.start)
 };
 
+  //// [ADD NEW TIMER FUNCTION] ////
+const addNewTimer = (timers, setTimers) => {
+  let tempTimers = [...timers];
+
+  tempTimers.push({
+    id: timers.length,
+    name: 'timer_' + timers.length,
+    list: '',
+    listPosition: false,
+    tags: [],
+    isRunning: false,
+    start: 0,
+    stop: 0,
+    elapsed: 0,
+    completed: false,
+  });
+
+    setTimers(tempTimers);
+    
+};
+
+//// [RENAME] ////
+const renameTimer = () => {
+  let tempTimers = [...timers];
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
+};
+  
+//// [MOVE TO LIST] ////
+const moveToNewList = () => {
+  let tempTimers = [...timers];
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
+};
+
+//// [CHANGE PLACE IN LIST] ////
+const organizeIndividualList = () => {
+  let tempTimers = [...timers];
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
+};
+
+//// [ADD TAG] ////
+
+
+//// [REMOVE TAG] ////
+
+
 //// [START / STOP] ////
 const handleTimer = (timer, timers, setTimers, serverTimestamp) => {
   if (!timer.completed) {
@@ -88,18 +139,6 @@ const handleTimer = (timer, timers, setTimers, serverTimestamp) => {
       return setTimers(tempTimers)
     };
   };
-};
-
-//// [DELETE] ////
-const deleteTimer = (timer, timers, setTimers) => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => (
-    item.name === timer.name && item.id === timer.id
-  ));
-
-  tempTimers.splice(index, 1);
-
-  return setTimers(tempTimers)
 };
 
 //// [RESET] ////
@@ -135,64 +174,26 @@ const handleCompleteTimer = (timer, timers, setTimers) => {
   return setTimers(tempTimers);
 };
 
-//// [RENAME] ////
-const renameTimer = () => {
+//// [DELETE] ////
+const deleteTimer = (timer, timers, setTimers) => {
   let tempTimers = [...timers];
   let index = tempTimers.findIndex(item => (
     item.name === timer.name && item.id === timer.id
   ));
-};
 
-//// [MOVE TO LIST] ////
-const moveToNewList = () => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => (
-    item.name === timer.name && item.id === timer.id
-  ));
-};
+  tempTimers.splice(index, 1);
 
-//// [CHANGE PLACE IN LIST] ////
-const organizeIndividualList = () => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => (
-    item.name === timer.name && item.id === timer.id
-  ));
-};
-
-//// [DELETE LIST] ////
-const deleteList = () => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => (
-    item.name === timer.name && item.id === timer.id
-  ));
-};
-
-//// [RENAME LIST] ////
-const renameList = () => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => (
-    item.name === timer.name && item.id === timer.id
-  ));
-};
-
-//// [MANAGE ORDER OF ALL LISTS] ////
-const manageAllLists = () => {
-  let tempTimers = [...timers];
-  let index = tempTimers.findIndex(item => (
-    item.name === timer.name && item.id === timer.id
-  ));
+  return setTimers(tempTimers)
 };
 
 export {
   displayProperTime,
-  handleTimer,
-  deleteTimer,
-  resetTimer,
-  handleCompleteTimer,
+  addNewTimer,
   renameTimer,
   moveToNewList,
   organizeIndividualList,
-  deleteList,
-  renameList,
-  manageAllLists,
+  handleTimer,
+  resetTimer,
+  handleCompleteTimer,
+  deleteTimer,
 }

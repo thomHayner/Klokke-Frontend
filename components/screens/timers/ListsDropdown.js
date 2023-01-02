@@ -2,43 +2,17 @@ import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 // https://github.com/react-native-picker/picker
 import { Dropdown } from 'react-native-element-dropdown';
+import {
+  addNewList,
+} from '../../../utilities/listsFunctions';
 
 //// TO BE DELETED [START] ////
-const DUMMY_LISTS = [
-  {
-    label: 'first',
-    value: 'first',
-  },
-  {
-    label: 'second',
-    value: 'second',
-  },
-  {
-    label: 'third',
-    value: 'third',
-  },
-  {
-    label: 'fourth',
-    value: 'fourth',
-  },
-];
+import { DUMMY_TIMERS, DUMMY_LISTS, DUMMY_TAGS } from '../../../utilities/DUMMY_DATA';
 //// TO BE DELETED [END] ////
 
 export default function ListsDropdown() {
   const [lists, setLists] = React.useState([])
   const [selectedList, setSelectedList] = React.useState(false);
-
-  //// [ADD NEW LIST FUNCTION] ////
-  const addNewList = () => {
-    let tempLists = [...timers];
-
-    tempLists.push({
-      label: 'fifth',
-      value: 'fifth',
-    },);
-
-    setLists(tempLists);
-  };
 
   //// [HANDLE SELECTING A NEW LIST] ////
   const handleListSelect = (list) => {

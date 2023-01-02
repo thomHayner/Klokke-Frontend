@@ -2,99 +2,10 @@ import * as React from 'react';
 import { FlatList, Pressable, View, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Timer from './Timer';
+import { addNewTimer } from '../../../utilities/timersFunctions';
 
 //// TO BE DELETED [START] ////
-const DUMMY_TIMERS = [
-  {
-    id: 0,
-    name: 'timer_0',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 1,
-    name: 'timer_1',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 2,
-    name: 'timer_2',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 3,
-    name: 'timer_3',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 4,
-    name: 'timer_4',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 5,
-    name: 'timer_5',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 6,
-    name: 'timer_6',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },{
-    id: 7,
-    name: 'timer_7',
-    list: '',
-    listPosition: false,
-    tags: [],
-    completed: false,
-    isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
-  },
-];
+import { DUMMY_TIMERS, DUMMY_LISTS, DUMMY_TAGS } from '../../../utilities/DUMMY_DATA';
 //// TO BE DELETED [END] ////
 
 export default function TimersList() {
@@ -104,27 +15,6 @@ export default function TimersList() {
   
   //// [FLATLIST SCROLL REF] ////
   const timerListRef = React.useRef(null);
-
-  //// [ADD NEW TIMER FUNCTION] ////
-  const addNewTimer = () => {
-    let tempTimers = [...timers];
-
-    tempTimers.push({
-      id: timers.length,
-      name: 'timer_' + timers.length,
-      list: '',
-      listPosition: false,
-      tags: [],
-      completed: false,
-      isRunning: false,
-      start: 0,
-      stop: 0,
-      elapsed: 0,
-    });
-
-     setTimers(tempTimers);
-     
-  };
 
   //// [SORT TIMERS BY SELECTED LIST] ////
   const timersListSort = (timers) => {
@@ -164,6 +54,7 @@ export default function TimersList() {
     };
   }, []);
 
+  //// [COMPONENTS] ////
   const ListItem = ({ item }) => (
     <Timer
       timer={item}
@@ -174,7 +65,7 @@ export default function TimersList() {
 
   const ListFooterComponent = (addNewTimer) => (
     <View style={styles.footer}>
-      <Pressable onPress={addNewTimer}>
+      <Pressable onPress={() => addNewTimer(timers, setTimers)}>
         <MaterialIcons name="add-circle-outline" size={24} color="black" />
       </Pressable>
     </View>
@@ -195,6 +86,7 @@ export default function TimersList() {
   )
 };
 
+//// [STYLES] ////
 const styles=StyleSheet.create({
   flatlist: {
     paddingHorizontal: 16,

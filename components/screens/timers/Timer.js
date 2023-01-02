@@ -15,7 +15,7 @@ import {
   handleCompleteTimer,
   renameTimer,
   moveToNewList,
-} from './timersFunctions';
+} from '../../../utilities/timersFunctions';
 
 export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
