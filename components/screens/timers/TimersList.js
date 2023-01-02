@@ -75,13 +75,22 @@ export default function TimersList() {
   };
 
   //// [COMPONENTS] ////
-  const ListItem = ({ item }) => (
+  const RenderItem = ({ item }) => (
     <Timer
       timer={item}
       timers={timers}
       setTimers={setTimers}
-      serverTimestamp={serverTimestamp} />
+      serverTimestamp={serverTimestamp}
+    />
   );
+
+  const ListEmptyComponent = () => {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>No Timers Found!</Text>
+      </View>
+    )
+  };
 
   const ListFooterComponent = (addNewTimer) => (
     <View style={styles.footer}>
@@ -98,7 +107,8 @@ export default function TimersList() {
       keyExtractor={(item, index) => index + '' + item.id}
       style={styles.flatlist}
       showsVerticalScrollIndicator={false}
-      renderItem={ListItem}
+      renderItem={RenderItem}
+      ListEmptyComponent={ListEmptyComponent}
       ListFooterComponent={ListFooterComponent(addNewTimer)}
       onContentSizeChange={handleScrollToEnd}
       // centerContent={true}
@@ -111,6 +121,11 @@ const styles=StyleSheet.create({
   flatlist: {
     paddingHorizontal: 16,
     width: '100%',
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footer: {
     flex: 1,
