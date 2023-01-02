@@ -179,7 +179,7 @@ export default function TimersList() {
 
 const styles=StyleSheet.create({
   flatlist: {
-    paddingHorizontal: 32,
+    paddingHorizontal: 16,
     width: '100%',
   },
   footer: {
