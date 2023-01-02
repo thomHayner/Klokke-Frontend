@@ -54,6 +54,7 @@ const getElapsedTimeSinceLastStart = (timer) => {
   if (!timer.start) {
     return 0
   }
+
   return serverTimestamp - timer.start
 };
 
@@ -62,10 +63,11 @@ const getOverallElapsedTime = (timer, serverTimestamp) => {
   if (!timer.isRunning) {
     return timer.elapsed
   }
+
   return timer.elapsed + (serverTimestamp - timer.start)
 };
 
-  //// [ADD NEW TIMER FUNCTION] ////
+  //// [CREATE NEW TIMER] ////
 const addNewTimer = (timers, setTimers) => {
   let tempTimers = [...timers];
 
@@ -82,27 +84,35 @@ const addNewTimer = (timers, setTimers) => {
     completed: false,
   });
 
-    setTimers(tempTimers);
-    
+  return setTimers(tempTimers)
 };
 
-//// [RENAME] ////
-const renameTimer = () => {
+//// [RENAME TIMER] ////
+const renameTimer = (timer, newTimerName, timers, setTimers) => {
   let tempTimers = [...timers];
   let index = tempTimers.findIndex(item => (
     item.name === timer.name && item.id === timer.id
   ));
+
+  tempTimers[index].name = newTimerName;
+
+  return setTimers(tempTimers)
 };
   
-//// [MOVE TO LIST] ////
-const moveToNewList = () => {
+//// [MOVE TIMER TO LIST] ////
+const moveToNewList = (timer, newListName, timers, setTimers) => {
   let tempTimers = [...timers];
   let index = tempTimers.findIndex(item => (
     item.name === timer.name && item.id === timer.id
   ));
+
+  tempTimers[index].list = newListName;
+
+  return setTimers(tempTimers)
 };
 
-//// [CHANGE PLACE IN LIST] ////
+//// [CHANGE TIMER PLACE IN LIST] ////
+/// not correct or implemented yet, placeholder only
 const organizeIndividualList = () => {
   let tempTimers = [...timers];
   let index = tempTimers.findIndex(item => (
@@ -110,13 +120,13 @@ const organizeIndividualList = () => {
   ));
 };
 
-//// [ADD TAG] ////
+//// [ADD TAG TO TIMER] ////
+/// not correct or implemented yet, placeholder only
 
+//// [REMOVE TAG FROM TIMER] ////
+/// not correct or implemented yet, placeholder only
 
-//// [REMOVE TAG] ////
-
-
-//// [START / STOP] ////
+//// [START/STOP TIMER] ////
 const handleTimer = (timer, timers, setTimers, serverTimestamp) => {
   if (!timer.completed) {
     let tempTimers = [...timers];
@@ -141,7 +151,7 @@ const handleTimer = (timer, timers, setTimers, serverTimestamp) => {
   };
 };
 
-//// [RESET] ////
+//// [RESET TIMER] ////
 const resetTimer = (timer, timers, setTimers) => {
   if (!timer.completed) {
     let tempTimers = [...timers];
@@ -162,7 +172,7 @@ const resetTimer = (timer, timers, setTimers) => {
   };
 };
 
-//// [MARK AS COMPLETED] ////
+//// [MARK TIMER AS COMPLETED] ////
 const handleCompleteTimer = (timer, timers, setTimers) => {
   let tempTimers = [...timers];
   let index = tempTimers.findIndex(item => (
@@ -174,7 +184,7 @@ const handleCompleteTimer = (timer, timers, setTimers) => {
   return setTimers(tempTimers);
 };
 
-//// [DELETE] ////
+//// [DELETE TIMER] ////
 const deleteTimer = (timer, timers, setTimers) => {
   let tempTimers = [...timers];
   let index = tempTimers.findIndex(item => (
