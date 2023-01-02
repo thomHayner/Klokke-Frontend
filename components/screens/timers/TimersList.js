@@ -36,28 +36,8 @@ export default function TimersList() {
       // console.log(e.data)
     };
   }, []);
-
-  //// [FILTER TIMERS] ////
-  //// [FILTER TIMERS BY SELECTED LIST] ////
-  const timersListSort = (displayTimers) => {
-    if (listSort !== false) {
-      return displayTimers.filter((timer) => timer.list === listSort)
-    };
-
-    return displayTimers
-  };
-
-  //// [FILTER TIMERS BY SELECTED TAGS] ////
-  const timersTagSort = (displayTimers) => {
-    if (tagsSort !== false) {
-      //double check this, needs work
-      return displayTimers.filter((timer) => timer.tags.includes(tagsSort.some))
-    };
-
-    return displayTimers
-  };
-
-  //// [FILTER TIMERS FOR DISPLAY BY LIST AND TAGS] ////
+  
+  //// [FILTER TIMERS BY LIST/TAGS FOR DISPLAY] ////
   const timersDisplaySort = (timers) => {
     let displayTimers = [...timers];
 
@@ -71,7 +51,20 @@ export default function TimersList() {
 
     return displayTimers
   };
-  
+
+  //// [timersDisplaySort() helper: FILTER BY SELECTED LIST] ////
+  const timersListSort = (displayTimers) => {
+    return displayTimers.filter((timer) => timer.list === listSort)
+  };
+
+  //// [timersDisplaySort() helper: FILTER BY SELECTED TAGS] ////
+  const timersTagSort = (displayTimers) => {
+    return displayTimers.filter(
+      (timer) => timer.tags.some(
+        (tag) => tagsSort.includes(tag)
+      )
+    )
+  };
   //// [FLATLIST SCROLL] ////
   const timerListRef = React.useRef(null);
 
@@ -101,7 +94,7 @@ export default function TimersList() {
   return (
     <FlatList
       ref={timerListRef}
-      data={timersListSort(timers)}
+      data={timersDisplaySort(timers)}
       keyExtractor={(item, index) => index + '' + item.id}
       style={styles.flatlist}
       showsVerticalScrollIndicator={false}
