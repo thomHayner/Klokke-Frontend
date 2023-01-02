@@ -9,12 +9,15 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import {
   displayProperTime,
+  renameTimer,
+  editDescription,
+  moveToNewList,
+  organizeIndividualList,
+  editTimerTags,
   handleTimer,
-  deleteTimer,
   resetTimer,
   handleCompleteTimer,
-  renameTimer,
-  moveToNewList,
+  deleteTimer,
 } from '../../../utilities/timersFunctions';
 
 export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
@@ -28,10 +31,12 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
           'Reset Timer',
           timer.completed ? 'Unlock Timer' : 'Mark Task Completed',
           'Rename Timer',
+          'Edit Description',
+          'Add / Remove Tags',
           'Move To List',
           'Close Menu',
         ],
-        cancelButtonIndex: 5,
+        cancelButtonIndex: 7,
         destructiveButtonIndex: 0,
       },
       buttonIndex => {
@@ -41,7 +46,9 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
           handleCompleteTimer(timer, timers, setTimers)
         };
         if (buttonIndex === 3) {renameTimer};
-        if (buttonIndex === 4) {moveToNewList};
+        if (buttonIndex === 4) {editDescription};
+        if (buttonIndex === 5) {editTimerTags};
+        if (buttonIndex === 6) {moveToNewList};
       }
     )
   };

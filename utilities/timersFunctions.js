@@ -98,6 +98,18 @@ const renameTimer = (timer, newTimerName, timers, setTimers) => {
 
   return setTimers(tempTimers)
 };
+
+//// [EDIT TIMER DESCRIPTION] ////
+const editDescription = (timer, newDescription, timers, setTimers) => {
+  let tempTimers = [...timers];
+  let index = tempTimers.findIndex(item => (
+    item.name === timer.name && item.id === timer.id
+  ));
+
+  tempTimers[index].description = newDescription;
+
+  return setTimers(tempTimers)
+};
   
 //// [MOVE TIMER TO LIST] ////
 const moveToNewList = (timer, newListName, timers, setTimers) => {
@@ -122,6 +134,7 @@ const organizeIndividualList = () => {
 
 //// [ADD TAG TO TIMER] ////
 /// not correct or implemented yet, placeholder only
+const editTimerTags = () => {};
 
 //// [REMOVE TAG FROM TIMER] ////
 /// not correct or implemented yet, placeholder only
@@ -203,8 +216,10 @@ export {
   displayProperTime,
   addNewTimer,
   renameTimer,
+  editDescription,
   moveToNewList,
   organizeIndividualList,
+  editTimerTags,
   handleTimer,
   resetTimer,
   handleCompleteTimer,
