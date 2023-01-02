@@ -1,11 +1,17 @@
 import * as React from 'react';
-import { FlatList, Pressable, View, StyleSheet } from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Timer from './Timer';
 import { addNewTimer } from '../../../utilities/timersFunctions';
 
 //// TO BE DELETED [START] ////
-import { DUMMY_TIMERS, DUMMY_LISTS, DUMMY_TAGS } from '../../../utilities/DUMMY_DATA';
+import { DUMMY_TIMERS } from '../../../utilities/DUMMY_DATA';
 //// TO BE DELETED [END] ////
 
 export default function TimersList() {

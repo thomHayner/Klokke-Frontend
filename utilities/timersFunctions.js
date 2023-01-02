@@ -5,13 +5,13 @@ const displayProperTime = (timer, serverTimestamp) => {
   let seconds = '00';
   let current = getOverallElapsedTime(timer, serverTimestamp);
 
-  // if the elapsed time is greater than or equal to 1 hour
+  // if elapsed time >= 1 hour
   if (current >= 3600000) {
-    // and the elapsed time is greater than or equal to 10 hours
+    // and elapsed time >= 10 hours
     if (current >= 36000000) {
       hours = `${Math.floor(current / 3600000)}`;
     };
-    // and the elapsed time is less than 10 hours
+    // and elapsed time < 10 hours
     if (current < 36000000) {
       hours = '0' + `${Math.floor(current / 3600000)}`;
     };
@@ -19,13 +19,13 @@ const displayProperTime = (timer, serverTimestamp) => {
     current = current % 3600000;
   };
   
-  // if the (remaining) elapsed time is less than 1 hour but greater than or equal to 1 minute
+  // if (remaining) elapsed time < 1 hour but >= 1 minute
   if (3600000 > current && current >= 60000) {
-    // and the (remaining) elapsed time is greater than or equal to 10 minutes
+    // and (remaining) elapsed time >= 10 minutes
     if (current >= 600000) {
       minutes = `${Math.floor(current / 60000)}`;
     };
-    // and the (remaining) elapsed time is less than 10 minutes
+    // and (remaining) elapsed time < 10 minutes
     if (current < 600000) {
       minutes = '0' + `${Math.floor(current / 60000)}`;
     };
@@ -33,20 +33,19 @@ const displayProperTime = (timer, serverTimestamp) => {
     current = current % 60000;
   };
 
-  // the (remaining) elapsed time is now less than 1 minute
+  // now, (remaining) elapsed time < 1 minute
   if (60000 > current) {
-    // and the (remaining) elapsed time is greater than or equal to 10 seconds
+    // and (remaining) elapsed time >= 10 seconds
     if (current >= 10000) {
       seconds = `${Math.floor(current / 1000)}`;
     };
-    // and the (remaining) elapsed time is less than 10 seconds
+    // and (remaining) elapsed time < 10 seconds
     if (current < 10000) {
       seconds = '0' + `${Math.floor(current / 1000)}`;
     };
   };
 
   return { HH: hours, MM: minutes, SS: seconds }
-  // return hours + ' : ' + minutes + ' : ' + seconds
 };
 
 //// [displayProperTime() helper: INTERVAL TIME] ////
@@ -74,6 +73,7 @@ const addNewTimer = (timers, setTimers) => {
   tempTimers.push({
     id: timers.length,
     name: 'timer_' + timers.length,
+    description: '',
     list: '',
     listPosition: false,
     tags: [],
@@ -139,7 +139,10 @@ const handleTimer = (timer, timers, setTimers, serverTimestamp) => {
     if (timer.isRunning) {
       tempTimers[index].stop = serverTimestamp;
       tempTimers[index].isRunning = false;
-      tempTimers[index].elapsed = tempTimers[index].elapsed + (tempTimers[index].stop - tempTimers[index].start);
+      tempTimers[index].elapsed = (
+        tempTimers[index].elapsed +
+        (tempTimers[index].stop - tempTimers[index].start)
+      );
       return setTimers(tempTimers)
     };
 

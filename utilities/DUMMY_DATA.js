@@ -2,6 +2,7 @@ const DUMMY_TIMERS = [
   {
     id: 0,
     name: 'timer_0',
+    description: '',
     list: '',
     listPosition: false,
     tags: [],
@@ -13,6 +14,7 @@ const DUMMY_TIMERS = [
   },{
     id: 1,
     name: 'timer_1',
+    description: '',
     list: '',
     listPosition: false,
     tags: [],
@@ -24,6 +26,7 @@ const DUMMY_TIMERS = [
   },{
     id: 2,
     name: 'timer_2',
+    description: '',
     list: '',
     listPosition: false,
     tags: [],
@@ -35,6 +38,7 @@ const DUMMY_TIMERS = [
   },{
     id: 3,
     name: 'timer_3',
+    description: '',
     list: '',
     listPosition: false,
     tags: [],
@@ -46,6 +50,7 @@ const DUMMY_TIMERS = [
   },{
     id: 4,
     name: 'timer_4',
+    description: '',
     list: '',
     listPosition: false,
     tags: [],
@@ -58,6 +63,7 @@ const DUMMY_TIMERS = [
   // {
   //   id: 5,
   //   name: 'timer_5',
+    // description: '',
   //   list: '',
   //   listPosition: false,
   //   tags: [],
@@ -69,6 +75,7 @@ const DUMMY_TIMERS = [
   // },{
   //   id: 6,
   //   name: 'timer_6',
+    // description: '',
   //   list: '',
   //   listPosition: false,
   //   tags: [],
@@ -80,6 +87,7 @@ const DUMMY_TIMERS = [
   // },{
   //   id: 7,
   //   name: 'timer_7',
+    // description: '',
   //   list: '',
   //   listPosition: false,
   //   tags: [],
@@ -91,6 +99,7 @@ const DUMMY_TIMERS = [
   // },{
   //   id: 8,
   //   name: 'timer_8',
+    // description: '',
   //   list: '',
   //   listPosition: false,
   //   tags: [],
@@ -102,6 +111,7 @@ const DUMMY_TIMERS = [
   // },{
   //   id: 9,
   //   name: 'timer_9',
+    // description: '',
   //   list: '',
   //   listPosition: false,
   //   tags: [],
