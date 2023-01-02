@@ -57,7 +57,22 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
             {timer.name}
           </Text>
           <Text style={[styles.row, styles.listName]}>
-            List: {timer.list ? timer.list : 'none'}
+            {'List: '}
+            {timer.list ? timer.list : 'none'}
+          </Text>
+          <Text style={[styles.row, styles.listName]}>
+            {'Tags: '}
+            {timer.tags.length > 0 ? 
+              timer.tags.map((tag, index)=> {
+                index === timer.tags.length ?
+                  tag
+                :
+                  tag + ', '
+              })
+            :
+              'none'
+            }
+            
           </Text>
         </View>
 
@@ -94,9 +109,9 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
             </View>
             <View style={styles.row}>
               <Text style={styles.clockfaceLabel}>h</Text>
-              <Text style={styles.clockfaceLabelDivider}> </Text>
+              <Text style={styles.clockfaceDivider}> </Text>
               <Text style={styles.clockfaceLabel}>m</Text>
-              <Text style={styles.clockfaceLabelDivider}> </Text>
+              <Text style={styles.clockfaceDivider}> </Text>
               <Text style={styles.clockfaceLabel}>s</Text>
             </View>
           </View>
@@ -131,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9F5FF'
   },
   mainCompartment: {
-    flex: 9,
+    flex: 5,
     alignItems: 'start',
     borderRightWidth: 1,
     borderRightColor: '#dddddd',
@@ -181,11 +196,6 @@ const styles = StyleSheet.create({
     minWidth: 32,
     textAlign: 'center',
     // backgroundColor: 'blue',
-  },
-  clockfaceLabelDivider: {
-    fontSize: 16,
-    minWidth: 6,
-    textAlign: 'center',
   },
   menuIconContainer: {
     padding: 8,
