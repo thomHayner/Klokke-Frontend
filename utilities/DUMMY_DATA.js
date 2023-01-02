@@ -115,22 +115,22 @@ const DUMMY_TIMERS = [
 
 const DUMMY_LISTS = [
   {
-    label: 'first',
+    label: 'List #1',
     value: '0',
   },
   {
-    label: 'second',
+    label: 'List #2',
     value: '1',
   },
   {
-    label: 'third',
+    label: 'List #3',
     value: '2',
   },
   {
-    label: 'fourth',
+    label: 'List #4',
     value: '3',
   },{
-    label: 'fifth',
+    label: 'List #5',
     value: '4',
   },
 ];
