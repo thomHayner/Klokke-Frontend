@@ -12,24 +12,7 @@ export default function TimersList() {
   const [timers, setTimers] = React.useState([]);
   const [serverTimestamp, setServerTimestamp] = React.useState(0);
   const [listSort, setListSort] = React.useState(false);
-  
-  //// [FLATLIST SCROLL REF] ////
-  const timerListRef = React.useRef(null);
-
-  //// [SORT TIMERS BY SELECTED LIST] ////
-  const timersListSort = (timers) => {
-    if (listSort !== false) {
-      return timers.sort((timer) => timer.list === listSort)
-    };
-
-    return timers
-  };
-
-  const handleScrollToEnd = () => {
-    if (timerListRef.current) {
-      timerListRef.current.scrollToEnd();
-    }
-  };
+  const [tagsSort, setTagSort] = React.useState(false);
 
   //// [FETCH DATA] ////
   React.useEffect(() => {
@@ -53,6 +36,50 @@ export default function TimersList() {
       // console.log(e.data)
     };
   }, []);
+
+  //// [FILTER TIMERS] ////
+  //// [FILTER TIMERS BY SELECTED LIST] ////
+  const timersListSort = (displayTimers) => {
+    if (listSort !== false) {
+      return displayTimers.filter((timer) => timer.list === listSort)
+    };
+
+    return displayTimers
+  };
+
+  //// [FILTER TIMERS BY SELECTED TAGS] ////
+  const timersTagSort = (displayTimers) => {
+    if (tagsSort !== false) {
+      //double check this, needs work
+      return displayTimers.filter((timer) => timer.tags.includes(tagsSort.some))
+    };
+
+    return displayTimers
+  };
+
+  //// [FILTER TIMERS FOR DISPLAY BY LIST AND TAGS] ////
+  const timersDisplaySort = (timers) => {
+    let displayTimers = [...timers];
+
+    if (listSort !== false) {
+      displayTimers = timersListSort(displayTimers);
+    };
+
+    if (tagsSort !== false) {
+      displayTimers = timersTagSort(displayTimers);
+    };
+
+    return displayTimers
+  };
+  
+  //// [FLATLIST SCROLL] ////
+  const timerListRef = React.useRef(null);
+
+  const handleScrollToEnd = () => {
+    if (timerListRef.current) {
+      timerListRef.current.scrollToEnd();
+    }
+  };
 
   //// [COMPONENTS] ////
   const ListItem = ({ item }) => (
