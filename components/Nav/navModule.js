@@ -1,5 +1,5 @@
-import BottomNav from "./BottomNav";
-import LogoTitle from "./LogoTitle";
+import BottomNav from './BottomNav';
+import LogoTitle from './LogoTitle';
 
 export {
   BottomNav,
