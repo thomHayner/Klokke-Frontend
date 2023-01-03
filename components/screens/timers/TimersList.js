@@ -16,6 +16,7 @@ import { DUMMY_TIMERS } from '../../../utilities/DUMMY_DATA';
 
 export default function TimersList() {
   const [timers, setTimers] = React.useState([]);
+  const [serverStatus, setServerStatus] = React.useState(false);
   const [serverTimestamp, setServerTimestamp] = React.useState(0);
   const [listSort, setListSort] = React.useState(false);
   const [tagsSort, setTagSort] = React.useState(false);
