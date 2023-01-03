@@ -6,7 +6,7 @@ import {
   TimersScreen,
   ReportsScreen,
   SettingsScreen
-} from '../screens/screensModule';
+} from './screensModule';
 
 const Tab = createBottomTabNavigator();
 
