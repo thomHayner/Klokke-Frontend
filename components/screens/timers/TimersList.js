@@ -101,7 +101,7 @@ export default function TimersList() {
   const ListFooterComponent = (addNewTimer) => (
     <View style={styles.footer}>
       <Pressable onPress={() => addNewTimer(timers, setTimers)}>
-        <MaterialIcons name="add-circle-outline" size={24} color="black" />
+        <MaterialIcons name='add-circle-outline' size={24} color='black' />
       </Pressable>
     </View>
   );

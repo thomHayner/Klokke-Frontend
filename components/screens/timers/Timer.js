@@ -87,22 +87,22 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
           <View style={[styles.container, ]}>
             {timer.completed ? 
               <MaterialIcons
-                name="lock-outline"
+                name='lock-outline'
                 size={30}
-                color="#249DFF"
+                color='#249DFF'
               />
             :
               timer.isRunning ? 
                 <MaterialIcons
-                  name="pause-circle-outline"
+                  name='pause-circle-outline'
                   size={30}
-                  color="#FF2824"
+                  color='#FF2824'
                 />
               :
                 <MaterialIcons
-                  name="play-circle-outline"
+                  name='play-circle-outline'
                   size={30}
-                  color="#389916"
+                  color='#389916'
                 />
             }
           </View>
@@ -129,7 +129,7 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
           style={[styles.container]}
           onPress={TimerActionSheet}>
         <View style={[styles.container, styles.menuIconContainer]}>
-            <MaterialIcons name="menu" size={24} color="black" />
+            <MaterialIcons name='menu' size={24} color='black' />
         </View>
       </Pressable>
     </View>
