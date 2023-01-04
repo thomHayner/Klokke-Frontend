@@ -5,9 +5,9 @@ const timersListState = atom({
   default: [
     {
       id: 0,
-      name: 'timer_0',
+      name: 'Timer #1',
       description: '',
-      list: '',
+      list: 'My First List',
       listPosition: false,
       tags: [],
       isRunning: false,
@@ -15,61 +15,75 @@ const timersListState = atom({
       stop: 0,
       elapsed: 0,
       isCompleted: false,
-    },{
-      id: 1,
-      name: 'timer_1',
-      description: '',
-      list: '',
-      listPosition: false,
-      tags: [],
-      isRunning: false,
-      start: 0,
-      stop: 0,
-      elapsed: 0,
-      isCompleted: false,
-    },{
-      id: 2,
-      name: 'timer_2',
-      description: '',
-      list: '',
-      listPosition: false,
-      tags: [],
-      isRunning: false,
-      start: 0,
-      stop: 0,
-      elapsed: 0,
-      isCompleted: true,
-    },{
-      id: 3,
-      name: 'timer_3',
-      description: '',
-      list: '',
-      listPosition: false,
-      tags: [],
-      isRunning: false,
-      start: 0,
-      stop: 0,
-      elapsed: 0,
-      isCompleted: false,
-    },{
-      id: 4,
-      name: 'timer_4',
-      description: '',
-      list: '',
-      listPosition: false,
-      tags: [],
-      isRunning: false,
-      start: 0,
-      stop: 0,
-      elapsed: 0,
-      isCompleted: true,
     }
+    // ,{
+    //   id: 1,
+    //   name: 'timer_1',
+    //   description: '',
+    //   list: 'List #2',
+    //   listPosition: false,
+    //   tags: [],
+    //   isRunning: false,
+    //   start: 0,
+    //   stop: 0,
+    //   elapsed: 0,
+    //   isCompleted: false,
+    // },{
+    //   id: 2,
+    //   name: 'timer_2',
+    //   description: '',
+    //   list: '',
+    //   listPosition: false,
+    //   tags: [],
+    //   isRunning: false,
+    //   start: 0,
+    //   stop: 0,
+    //   elapsed: 0,
+    //   isCompleted: true,
+    // },{
+    //   id: 3,
+    //   name: 'timer_3',
+    //   description: '',
+    //   list: '',
+    //   listPosition: false,
+    //   tags: [],
+    //   isRunning: false,
+    //   start: 0,
+    //   stop: 0,
+    //   elapsed: 0,
+    //   isCompleted: false,
+    // },{
+    //   id: 4,
+    //   name: 'timer_4',
+    //   description: '',
+    //   list: '',
+    //   listPosition: false,
+    //   tags: [],
+    //   isRunning: false,
+    //   start: 0,
+    //   stop: 0,
+    //   elapsed: 0,
+    //   isCompleted: true,
+    // }
   ]
 });
 
 const timersListedFilterState = atom({
   key: 'timersListedFilterState',
   default: 'All'
+});
+
+const listsListState = atom({
+  key: 'listsListState',
+  default: [
+    {
+      label: 'All',
+      value: 'All',
+    },{
+      label: 'My First List',
+      value: 'My First List',
+    },
+  ]
 });
 
 const timersTaggedFilterState = atom({
@@ -122,6 +136,7 @@ const filteredTimersListState = selector({
 export {
   timersListState,
   timersCompletedFilterState,
+  listsListState,
   timersListedFilterState,
   timersTaggedFilterState,
   filteredTimersListState,

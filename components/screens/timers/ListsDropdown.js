@@ -1,35 +1,58 @@
 import * as React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { useRecoilState } from 'recoil';
+import { timersListedFilterState, listsListState } from '../../../timers_recoil_state';
 // https://github.com/react-native-picker/picker
 import { Dropdown } from 'react-native-element-dropdown';
+import { MaterialIcons } from '@expo/vector-icons';
 import {
   addNewList,
 } from '../../../utilities/listsFunctions';
 
-//// TO BE DELETED [START] ////
-import { DUMMY_TIMERS, DUMMY_LISTS, DUMMY_TAGS } from '../../../utilities/DUMMY_DATA';
-//// TO BE DELETED [END] ////
 
 export default function ListsDropdown() {
-  const [lists, setLists] = React.useState([])
-  const [selectedList, setSelectedList] = React.useState(false);
+  const [lists, setLists] = useRecoilState(listsListState);
+  const [selectedList, setSelectedList] = useRecoilState(timersListedFilterState);
+  // const [selectedList, setSelectedList] = React.useState(false);
+  const [onChangeInputValue, setOnChangeInputValue] = React.useState('false');
 
   //// [HANDLE SELECTING A NEW LIST] ////
   const handleListSelect = (list) => {
-    setSelectedList(list);
+    setSelectedList(list.value);
+  };
+
+  const addList = () => {
+    const newList = {
+      label: onChangeInputValue,
+      value: onChangeInputValue,
+    }
+    setLists((oldListsList) => [
+      ...oldListsList,
+      newList
+    ]);
+    handleListSelect(newList);
+    setOnChangeInputValue('');
   };
 
   //// [FETCH DATA] ////
-  React.useEffect(() => {
-    setLists(DUMMY_LISTS)
-  }, []);
+  // React.useEffect(() => {
+  //   setLists(DUMMY_LISTS)
+  // }, []);
+
+
 
   //// [COMPONENT TO RENDER IF LISTS IS EMPTY] ////
   const RenderEmpty = () => {
     return (
-      <View style={styles.emptyContainer}>
-        <Text>No Lists Found!</Text>
-      </View>
+      lists.length > 0 ?
+          <Pressable style={styles.emptyContainer} onPress={addList}>
+            <MaterialIcons name="playlist-add" size={24} color="black" />
+            <Text>Create A New List</Text>
+          </Pressable>
+      :
+        <View style={styles.emptyContainer}>
+          <Text>No Lists Found!</Text>
+        </View>
     )
   };
 
@@ -46,6 +69,7 @@ export default function ListsDropdown() {
         }}
         labelField='label'
         onChange={(list) => handleListSelect(list)}
+        onChangeText={(search) => setOnChangeInputValue(search)}
         placeholder='All Timers'
         search
         searchPlaceholder='Search Lists'
