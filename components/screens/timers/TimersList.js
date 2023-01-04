@@ -6,25 +6,25 @@ import {
   Text,
   View,
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+
 import Timer from './Timer';
 import { addNewTimer } from '../../../utilities/timersFunctions';
 
-//// TO BE DELETED [START] ////
-import { DUMMY_TIMERS } from '../../../utilities/DUMMY_DATA';
-//// TO BE DELETED [END] ////
+import TimerCreator from './TimerCreator';
+import { useRecoilValue } from 'recoil';
+import { filteredTimersListState } from '../../../timers_recoil_state';
 
 export default function TimersList() {
-  const [timers, setTimers] = React.useState([]);
+  const timers = useRecoilValue(filteredTimersListState);
   const [serverStatus, setServerStatus] = React.useState(false);
   const [serverTimestamp, setServerTimestamp] = React.useState(0);
   const [listSort, setListSort] = React.useState(false);
   const [tagsSort, setTagSort] = React.useState(false);
 
   //// [FETCH DATA] ////
-  React.useEffect(() => {
-    setTimers(DUMMY_TIMERS)
-  }, []);
+  // React.useEffect(() => {
+  //   setTimers(DUMMY_TIMERS)
+  // }, []);
 
   //// [WEBSOCKET FUNCTIONS] ////
   React.useEffect(() => {
@@ -40,38 +40,9 @@ export default function TimersList() {
     };
     ws.onmessage = (e) => {
       setServerTimestamp(e.data);
-      // console.log(e.data)
     };
   }, []);
-  
-  //// [FILTER TIMERS BY LIST/TAGS FOR DISPLAY] ////
-  const timersDisplaySort = (timers) => {
-    let displayTimers = [...timers];
 
-    if (listSort !== false) {
-      displayTimers = timersListSort(displayTimers);
-    };
-
-    if (tagsSort !== false) {
-      displayTimers = timersTagSort(displayTimers);
-    };
-
-    return displayTimers
-  };
-
-  //// [timersDisplaySort() helper: FILTER BY SELECTED LIST] ////
-  const timersListSort = (displayTimers) => {
-    return displayTimers.filter((timer) => timer.list === listSort)
-  };
-
-  //// [timersDisplaySort() helper: FILTER BY SELECTED TAGS] ////
-  const timersTagSort = (displayTimers) => {
-    return displayTimers.filter(
-      (timer) => timer.tags.some(
-        (tag) => tagsSort.includes(tag)
-      )
-    )
-  };
   //// [FLATLIST SCROLL] ////
   const timerListRef = React.useRef(null);
 
@@ -85,8 +56,6 @@ export default function TimersList() {
   const RenderItem = ({ item }) => (
     <Timer
       timer={item}
-      timers={timers}
-      setTimers={setTimers}
       serverTimestamp={serverTimestamp}
     />
   );
@@ -99,24 +68,23 @@ export default function TimersList() {
     )
   };
 
-  const ListFooterComponent = (addNewTimer) => (
+    const ListFooterComponent = () => (
     <View style={styles.footer}>
-      <Pressable onPress={() => addNewTimer(timers, setTimers)}>
-        <MaterialIcons name='add-circle-outline' size={24} color='black' />
-      </Pressable>
+      <TimerCreator />
     </View>
   );
 
   return (
     <FlatList
       ref={timerListRef}
-      data={timersDisplaySort(timers)}
+      data={timers}
       keyExtractor={(item, index) => index + '' + item.id}
       style={styles.flatlist}
       showsVerticalScrollIndicator={false}
+      // initialNumToRender={timers.length}
       renderItem={RenderItem}
       ListEmptyComponent={ListEmptyComponent}
-      ListFooterComponent={ListFooterComponent(addNewTimer)}
+      ListFooterComponent={ListFooterComponent()}
       onContentSizeChange={handleScrollToEnd}
       // centerContent={true}
     />
