@@ -35,8 +35,6 @@ export default function ListsDropdown() {
   //   setLists(DUMMY_LISTS)
   // }, []);
 
-
-
   //// [COMPONENT TO RENDER IF LISTS IS EMPTY] ////
   const RenderEmpty = () => {
     return (
