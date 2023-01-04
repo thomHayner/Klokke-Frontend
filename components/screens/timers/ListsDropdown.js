@@ -2,18 +2,13 @@ import * as React from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { useRecoilState } from 'recoil';
 import { timersListedFilterState, listsListState } from '../../../timers_recoil_state';
-// https://github.com/react-native-picker/picker
+// https://www.npmjs.com/package/react-native-element-dropdown
 import { Dropdown } from 'react-native-element-dropdown';
 import { MaterialIcons } from '@expo/vector-icons';
-import {
-  addNewList,
-} from '../../../utilities/listsFunctions';
-
 
 export default function ListsDropdown() {
   const [lists, setLists] = useRecoilState(listsListState);
   const [selectedList, setSelectedList] = useRecoilState(timersListedFilterState);
-  // const [selectedList, setSelectedList] = React.useState(false);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('false');
 
   //// [HANDLE SELECTING A NEW LIST] ////
@@ -21,6 +16,7 @@ export default function ListsDropdown() {
     setSelectedList(list.value);
   };
 
+  //// [ADD A NEW LIST] ////
   const addList = () => {
     const newList = {
       label: onChangeInputValue,
@@ -64,8 +60,6 @@ export default function ListsDropdown() {
         data={lists}
         flatListProps={{
           ListEmptyComponent: <RenderEmpty />,
-          // refreshControl: <RefreshControl refreshing={false} onRefresh={onRefresh} />,
-          // onEndReachedThreshold: 0.5,
         }}
         labelField='label'
         onChange={(list) => handleListSelect(list)}
