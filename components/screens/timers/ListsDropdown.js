@@ -39,10 +39,10 @@ export default function ListsDropdown() {
   const RenderEmpty = () => {
     return (
       lists.length > 0 ?
-          <Pressable style={styles.emptyContainer} onPress={addList}>
-            <MaterialIcons name="playlist-add" size={24} color="black" />
-            <Text>Create A New List</Text>
-          </Pressable>
+        <Pressable style={styles.emptyContainer} onPress={addList}>
+          <MaterialIcons name="playlist-add" size={24} color="black" />
+          <Text>Create A New List</Text>
+        </Pressable>
       :
         <View style={styles.emptyContainer}>
           <Text>No Lists Found!</Text>
