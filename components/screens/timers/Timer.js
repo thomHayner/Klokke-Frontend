@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useRecoilState } from 'recoil';
+import { timersListState } from '../../../timers_recoil_state';
 import {
   View,
   Text,
@@ -16,12 +18,14 @@ import {
   editTimerTags,
   handleTimer,
   resetTimer,
-  handleCompleteTimer,
+  handleComplete,
   deleteTimer,
 } from '../../../utilities/timersFunctions';
 
-export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
+export default function Timer({ timer, serverTimestamp }) {
+  const [timersList, setTimersList] = useRecoilState(timersListState);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
+  const index = timersList.findIndex((item) => item === timer);
 
   const TimerActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -29,26 +33,21 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
         options: [
           'Delete Timer',
           'Reset Timer',
-          timer.completed ? 'Unlock Timer' : 'Mark Task Completed',
-          'Rename Timer',
-          'Edit Description',
-          'Add / Remove Tags',
-          'Move To List',
+          timer.isCompleted ? 'Unlock Timer' : 'Mark Task Completed',
+          'Edit Timer',
           'Close Menu',
         ],
-        cancelButtonIndex: 7,
+        cancelButtonIndex: 4,
         destructiveButtonIndex: 0,
       },
       buttonIndex => {
-        if (buttonIndex === 0) {deleteTimer(timer, timers, setTimers)};
-        if (buttonIndex === 1) {resetTimer(timer, timers, setTimers)};
+        if (buttonIndex === 0) {deleteTimer(index, timersList, setTimersList)};
+        if (buttonIndex === 1) {resetTimer(index, timersList, setTimersList)};
         if (buttonIndex === 2) {
-          handleCompleteTimer(timer, timers, setTimers)
+          handleComplete(index, timersList, setTimersList);
+          // setTimersList(newList)
         };
-        if (buttonIndex === 3) {renameTimer};
-        if (buttonIndex === 4) {editDescription};
-        if (buttonIndex === 5) {editTimerTags};
-        if (buttonIndex === 6) {moveToNewList};
+        if (buttonIndex === 3) {};
       }
     )
   };
@@ -57,7 +56,7 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
     <View style={[styles.container, styles.row, styles.timerOuterWrapper]}>
       <Pressable 
         style={[styles.container, styles.mainCompartment]}
-        onPress={() => handleTimer(timer, timers, setTimers, serverTimestamp)}
+        onPress={() => handleTimer(index, timersList, setTimersList, serverTimestamp)}
       >
         <View style={styles.mainCompartmentTop}>
           <Text style={[styles.row, styles.timerName]}>
@@ -85,7 +84,7 @@ export default function Timer({ timer, timers, setTimers, serverTimestamp }) {
 
         <View style={[styles.row, styles.mainCompartmentBottom]}>
           <View style={[styles.container, ]}>
-            {timer.completed ? 
+            {timer.isCompleted ? 
               <MaterialIcons
                 name='lock-outline'
                 size={30}
