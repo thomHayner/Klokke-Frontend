@@ -9,6 +9,7 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import EditTimerModal from './EditTimerModal';
 import {
   displayProperTime,
   renameTimer,
@@ -24,8 +25,13 @@ import {
 
 export default function Timer({ timer, serverTimestamp }) {
   const [timersList, setTimersList] = useRecoilState(timersListState);
+  const [modalVisible, setModalVisible] = React.useState(false);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
   const index = timersList.findIndex((item) => item === timer);
+  
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
 
   const TimerActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -47,7 +53,7 @@ export default function Timer({ timer, serverTimestamp }) {
           handleComplete(index, timersList, setTimersList);
           // setTimersList(newList)
         };
-        if (buttonIndex === 3) {};
+        if (buttonIndex === 3) {toggleModal()};
       }
     )
   };
@@ -131,6 +137,11 @@ export default function Timer({ timer, serverTimestamp }) {
             <MaterialIcons name='menu' size={24} color='black' />
         </View>
       </Pressable>
+
+      <EditTimerModal
+        modalVisible={modalVisible}
+        toggleModal={toggleModal}
+      />
     </View>
   )
 };
