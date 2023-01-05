@@ -95,24 +95,24 @@ const tagsListState = atom({
   key: 'tagsListState',
   default:[
     {
-      label: 'tag 1',
-      value: '0',
+      label: 'Work',
+      value: 'Work',
     },
     {
-      label: 'tag 2',
-      value: '1',
+      label: 'Gym',
+      value: 'Gym',
     },
     {
-      label: 'tag 3',
-      value: '2',
+      label: 'Study',
+      value: 'Study',
     },
     {
-      label: 'tag 4',
-      value: '3',
+      label: 'Cooking',
+      value: 'Cooking',
     },
     {
-      label: 'tag 5',
-      value: '4',
+      label: 'Laundry',
+      value: 'Laundry',
     },
   ],
 });
