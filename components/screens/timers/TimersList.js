@@ -70,7 +70,9 @@ export default function TimersList() {
 
     const ListFooterComponent = () => (
     <View style={styles.footer}>
-      <TimerCreator />
+      <TimerCreator
+        scrollHandler={handleScrollToEnd}
+      />
     </View>
   );
 
@@ -85,7 +87,7 @@ export default function TimersList() {
       renderItem={RenderItem}
       ListEmptyComponent={ListEmptyComponent}
       ListFooterComponent={ListFooterComponent()}
-      onContentSizeChange={handleScrollToEnd}
+      // onContentSizeChange={handleScrollToEnd}
       // centerContent={true}
     />
   )

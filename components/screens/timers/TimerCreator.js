@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useSetRecoilState } from 'recoil';
 import { timersListState } from '../../../timers_recoil_state';
 
-export default function TimerCreator() {
+export default function TimerCreator({ scrollHandler }) {
   const [inputValue, onChangeInputValue] = React.useState('');
   const setTimers = useSetRecoilState(timersListState);
 
@@ -26,6 +26,7 @@ export default function TimerCreator() {
       }
     ]);
     onChangeInputValue('');
+    setTimeout(()=> scrollHandler(), 100);
   };
 
   return (
