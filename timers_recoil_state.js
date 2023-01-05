@@ -65,12 +65,12 @@ const timersListState = atom({
     //   elapsed: 0,
     //   isCompleted: true,
     // }
-  ]
+  ],
 });
 
 const timersListedFilterState = atom({
   key: 'timersListedFilterState',
-  default: 'All'
+  default: 'All',
 });
 
 const listsListState = atom({
@@ -83,17 +83,43 @@ const listsListState = atom({
       label: 'My First List',
       value: 'My First List',
     },
-  ]
+  ],
 });
 
 const timersTaggedFilterState = atom({
   key: 'timersTaggedFilterState',
-  default: []
+  default: [],
+});
+
+const tagsListState = atom({
+  key: 'tagsListState',
+  default:[
+    {
+      label: 'tag 1',
+      value: '0',
+    },
+    {
+      label: 'tag 2',
+      value: '1',
+    },
+    {
+      label: 'tag 3',
+      value: '2',
+    },
+    {
+      label: 'tag 4',
+      value: '3',
+    },
+    {
+      label: 'tag 5',
+      value: '4',
+    },
+  ],
 });
 
 const timersCompletedFilterState = atom({
   key: 'timersCompletedFilterState',
-  default: -1
+  default: -1,
 });
 
 const filteredTimersListState = selector({
@@ -130,7 +156,7 @@ const filteredTimersListState = selector({
     };
 
     return list
-  }
+  },
 });
 
 export {
@@ -138,6 +164,7 @@ export {
   timersCompletedFilterState,
   listsListState,
   timersListedFilterState,
+  tagsListState,
   timersTaggedFilterState,
   filteredTimersListState,
 }
