@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { timersListState } from '../../../timers_recoil_state';
 import {
   Modal,
@@ -19,7 +19,6 @@ import ListsDropdown from './ListsDropdown';
 import TagsMultiSelect from './TagsMultiSelect';
 
 const defaultTimer = {
-  id: -1,
   name: '',
   description: '',
   list: '',
@@ -37,46 +36,59 @@ export default function EditTimerModal({
   toggleModal,
   timer = defaultTimer,
   scrollHandler,
+  mode,
 }) {
   const insets = useSafeAreaInsets();
-  const setTimers = useSetRecoilState(timersListState);
-  const [nameValue, setNameValue] = React.useState(
-    timer.name ? timer.name : ''
-  );
-  const [listValue, setListValue] = React.useState(
-    timer.list ? timer.list : ''
-  );
-  const [tagsValue, setTagsValue] = React.useState(
-    timer.tags ? timer.tags : []
-  );
+  const [timers, setTimers] = useRecoilState(timersListState);
+  const [nameValue, setNameValue] = React.useState(timer.name);
+  const [listValue, setListValue] = React.useState(timer.list);
+  const [tagsValue, setTagsValue] = React.useState(timer.tags);
   const [descriptionValue, setDescriptionValue] = React.useState(
-    timer.description ? timer.description : ''
+    timer.description
   );
+  const [startValue, setStartValue] = React.useState(timer.start);
+  const [stopValue, setStopValue] = React.useState(timer.stop);
   
   const newTimer = {
-    id: timersListState.length,
     name: nameValue,
     description: descriptionValue,
     list: listValue,
     listPosition: false,
     tags: tagsValue,
     isRunning: false,
-    start: 0,
-    stop: 0,
-    elapsed: 0,
+    start: startValue,
+    stop: stopValue,
+    elapsed: 0, // will need to be calculated - for intervals
     completed: false,
   };
 
-  const addTimer = () => {
-    setTimers((oldTimersList) => [
-      ...oldTimersList,
-      newTimer
-    ]);
+  const submitTimer = () => {
+    if (mode === 'add') {
+      setTimers((oldTimersList) => [
+        ...oldTimersList,
+        {
+          ...newTimer,
+          id: timer.id,
+        }
+      ])
+    };
+    if (mode === 'edit') {
+      setTimers((oldTimersList) => [
+        ...oldTimersList,
+        {
+          ...newTimer,
+          id: timers.length,
+        }
+      ]);
+    }
     setNameValue('');
     setListValue('');
     setTagsValue('');
     setDescriptionValue('');
+    setStartValue(0);
+    setStopValue(0);
     setTimeout(()=> scrollHandler(), 100);
+    toggleModal();;
   };
 
   // const onChangeName = (name) => {
@@ -139,12 +151,12 @@ export default function EditTimerModal({
                 <TextInput
                   style={[styles.intervalInput, { marginRight: 4 }]}
                   value={''}
-                  onChangeText={{}}
+                  onChangeText={(start) => {setStartValue(start)}}
                 />
                 <TextInput
                   style={[styles.intervalInput, { marginLeft: 4 }]}
                   value={''}
-                  onChangeText={{}}
+                  onChangeText={(stop) => {setStopValue(stop)}}
                 />
               </View>
             </View>
@@ -152,7 +164,7 @@ export default function EditTimerModal({
             <View style={[styles.row, { marginTop: 30, }]}>
               <Pressable
                 style={[styles.buttonBorder, styles.submit]}
-                onPress={()=>{}}
+                onPress={submitTimer}
               >
                 <Text style={styles.buttonLabel}>Submit</Text>
               </Pressable>
@@ -240,5 +252,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'red', 
   },
 });
-
-// 
