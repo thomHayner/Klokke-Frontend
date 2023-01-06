@@ -111,7 +111,6 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
             :
               'none'
             }
-            
           </Text>
         </View>
 
