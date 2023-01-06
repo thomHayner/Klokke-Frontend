@@ -17,10 +17,10 @@ export default function ListsDropdown({
   //// [HANDLE SELECTING A NEW LIST] ////
   const handleListSelect = (list) => {
     if (mode === 'selectList') {
-      return setSelectedList(list.value);
+      setSelectedList(list.value);
     };
     if (mode === 'editTimer') {
-      return setEditValue(list.value);
+      setEditValue(list.value);
     };
   };
 
