@@ -77,7 +77,7 @@ const listsListState = atom({
   key: 'listsListState',
   default: [
     {
-      label: 'All',
+      label: 'All Timers',
       value: 'All',
     },{
       label: 'My First List',
