@@ -6,14 +6,22 @@ import { listedFilterState, listsListState } from '../../../timers_recoil_state'
 import { Dropdown } from 'react-native-element-dropdown';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function ListsDropdown() {
+export default function ListsDropdown({
+  mode,
+  setEditValue = () => {},
+}) {
   const [lists, setLists] = useRecoilState(listsListState);
   const [selectedList, setSelectedList] = useRecoilState(listedFilterState);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('false');
 
   //// [HANDLE SELECTING A NEW LIST] ////
   const handleListSelect = (list) => {
-    setSelectedList(list.value);
+    if (mode === 'selectList') {
+      return setSelectedList(list.value);
+    };
+    if (mode === 'editTimer') {
+      return setEditValue(list.value);
+    };
   };
 
   //// [ADD A NEW LIST] ////
@@ -21,7 +29,7 @@ export default function ListsDropdown() {
     const newList = {
       label: onChangeInputValue,
       value: onChangeInputValue,
-    }
+    };
     setLists((oldListsList) => [
       ...oldListsList,
       newList
@@ -35,8 +43,8 @@ export default function ListsDropdown() {
   //   setLists(DUMMY_LISTS)
   // }, []);
 
-  //// [COMPONENT TO RENDER IF LISTS IS EMPTY] ////
-  const RenderEmpty = () => {
+  //// [COMPONENTS] ////
+  const ListEmptyComponent = () => {
     return (
       lists.length > 0 ?
         <Pressable style={styles.emptyContainer} onPress={addList}>
@@ -57,14 +65,14 @@ export default function ListsDropdown() {
         containerStyle={styles.dropdownContainer}
         data={lists}
         flatListProps={{
-          ListEmptyComponent: <RenderEmpty />,
+          ListEmptyComponent: <ListEmptyComponent />,
         }}
         labelField='label'
         onChange={(list) => handleListSelect(list)}
         onChangeText={(search) => setOnChangeInputValue(search)}
         placeholder='All Timers'
         search
-        searchPlaceholder='Search Lists'
+        searchPlaceholder='Search Lists Or Create New List'
         value={selectedList}
         valueField='value'
       />

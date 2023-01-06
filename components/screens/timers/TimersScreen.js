@@ -21,7 +21,7 @@ export default function TimersScreen() {
       <View style={styles.listsDropdownWrapper}>
         <ListsDropdown/>
       </View>
-      <TimersList />
+      <TimersList mode={'selectList'} />
     </View>
   );
 };
