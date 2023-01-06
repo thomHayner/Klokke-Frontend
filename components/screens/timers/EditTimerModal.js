@@ -64,21 +64,24 @@ export default function EditTimerModal({
 
   const submitTimer = () => {
     if (mode === 'add') {
+      const index = timers.length;
       setTimers((oldTimersList) => [
         ...oldTimersList,
         {
           ...newTimer,
-          id: timer.id,
+          id: index,
         }
       ])
     };
     if (mode === 'edit') {
+      const index = timers.findIndex(item => item.id === timer.id);
       setTimers((oldTimersList) => [
-        ...oldTimersList,
+        ...oldTimersList.slice(0, index),
         {
           ...newTimer,
-          id: timers.length,
-        }
+          id: index,
+        },
+        ...oldTimersList.slice(index + 1)
       ]);
     }
     setNameValue('');
@@ -127,7 +130,10 @@ export default function EditTimerModal({
 
             <View style={styles.container}>
               <Text  style={styles.textLabel}>List</Text>
-              <ListsDropdown />
+              <ListsDropdown
+                mode={'editTimer'}
+                setEditValue={setListValue}
+              />
             </View>
 
             <View style={styles.container}>
