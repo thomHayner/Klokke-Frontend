@@ -12,9 +12,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Timer from './Timer';
 import EditTimerModal from './EditTimerModal';
 
-import { addNewTimer } from '../../../utilities/timersFunctions';
-import TimerCreator from './TimerCreator';
-
 export default function TimersList() {
   const timers = useRecoilValue(filteredTimersListState);
   const [serverTimestamp, setServerTimestamp] = React.useState(0);
