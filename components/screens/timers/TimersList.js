@@ -104,6 +104,7 @@ export default function TimersList() {
         modalVisible={modalVisible}
         toggleModal={toggleModal}
         scrollHandler={handleScrollToEnd}
+        mode='add'
       />
     </View>
     
