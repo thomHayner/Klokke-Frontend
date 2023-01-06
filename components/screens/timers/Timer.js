@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Pressable,
   ActionSheetIOS,
+  Alert,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import EditTimerModal from './EditTimerModal';
@@ -51,18 +52,44 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
         if (buttonIndex === 1) {resetTimer(index, timersList, setTimersList)};
         if (buttonIndex === 2) {
           handleComplete(index, timersList, setTimersList);
-          // setTimersList(newList)
         };
-        if (buttonIndex === 3) {toggleModal()};
+        if (buttonIndex === 3) {
+          timer.isRunning ?
+            stopTimerAlert()
+          :
+            toggleModal()
+        };
       }
     )
   };
+
+  const stopTimerAlert = () =>
+    Alert.alert(
+      "Alert Title",
+      "The timer needs to be stopped before editing!",
+      [
+        {
+          text: "Stop Timer",
+          onPress: () => {
+            handleTimer(index, timersList, setTimersList, serverTimestamp)
+            toggleModal();
+          },
+        },
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        }
+      ]
+    );
 
   return (
     <View style={[styles.container, styles.row, styles.timerOuterWrapper]}>
       <Pressable 
         style={[styles.container, styles.mainCompartment]}
-        onPress={() => handleTimer(index, timersList, setTimersList, serverTimestamp)}
+        onPress={() => {
+          handleTimer(index, timersList, setTimersList, serverTimestamp)
+        }}
       >
         <View style={styles.mainCompartmentTop}>
           <Text style={[styles.row, styles.timerName]}>
@@ -143,6 +170,7 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
         toggleModal={toggleModal}
         timer={timer}
         scrollHandler={scrollHandler}
+        mode='edit'
       />
     </View>
   )
