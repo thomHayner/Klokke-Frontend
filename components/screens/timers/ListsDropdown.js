@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { useRecoilState } from 'recoil';
-import { timersListedFilterState, listsListState } from '../../../timers_recoil_state';
+import { listedFilterState, listsListState } from '../../../timers_recoil_state';
 // https://www.npmjs.com/package/react-native-element-dropdown
 import { Dropdown } from 'react-native-element-dropdown';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function ListsDropdown() {
   const [lists, setLists] = useRecoilState(listsListState);
-  const [selectedList, setSelectedList] = useRecoilState(timersListedFilterState);
+  const [selectedList, setSelectedList] = useRecoilState(listedFilterState);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('false');
 
   //// [HANDLE SELECTING A NEW LIST] ////
@@ -75,12 +75,9 @@ export default function ListsDropdown() {
 const styles = StyleSheet.create({
   dropdownWrapper: {
     width: '100%',
-    paddingHorizontal: 16,
-    // justifyContent: 'start',
   },
   dropdownComponent: {
     backgroundColor: '#DDDDDD',
-    margin: 16,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
