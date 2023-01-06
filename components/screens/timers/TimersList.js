@@ -67,22 +67,26 @@ export default function TimersList() {
   const ListEmptyComponent = () => {
     return (
       <View style={styles.emptyContainer}>
-        <Text>No Timers Found!</Text>
+        <Text style={styles.listEmptyText}>
+          No Timers Found!
+        </Text>
       </View>
     )
   };
 
     const ListFooterComponent = () => (
     <View style={styles.footer}>
-      <Pressable onPress={() => toggleModal()} style={styles.container}>
+      <Pressable onPress={toggleModal} style={styles.container}>
         <MaterialIcons name='add-circle-outline' size={24} color='black' />
-        <Text>Add Timer</Text>
+        <Text style={styles.footerText}>
+          Add Timer
+        </Text>
       </Pressable>
     </View>
   );
 
   return (
-    <View style={{width: '100%'}}>
+    <View style={styles.wrapper}>
       <FlatList
         ref={timerListRef}
         data={timers}
@@ -108,6 +112,10 @@ export default function TimersList() {
 
 //// [STYLES] ////
 const styles=StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    width: '100%',
+  },
   flatlist: {
     paddingHorizontal: 16,
     width: '100%',
@@ -119,8 +127,12 @@ const styles=StyleSheet.create({
   },
   emptyContainer: {
     flex: 1,
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  listEmptyText: {
+    fontSize: 20,
   },
   footer: {
     flex: 1,
@@ -128,4 +140,8 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     padding: 16,
   },
-})
+  footerText: {
+    fontSize: 16,
+    marginVertical: 8,
+  },
+});
