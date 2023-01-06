@@ -18,11 +18,10 @@ export default function TimersScreen() {
           height: '100%',
         }}
       />
-
-      <ListsDropdown />
-
+      <View style={styles.listsDropdownWrapper}>
+        <ListsDropdown/>
+      </View>
       <TimersList />
-
     </View>
   );
 };
@@ -32,5 +31,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'start',
+  },
+  listsDropdownWrapper: {
+    width: '100%',
+    paddingTop: 8,
+    paddingHorizontal: 16,
   },
 });
