@@ -68,8 +68,8 @@ const timersListState = atom({
   ],
 });
 
-const timersListedFilterState = atom({
-  key: 'timersListedFilterState',
+const listedFilterState = atom({
+  key: 'listedFilterState',
   default: 'All',
 });
 
@@ -86,8 +86,8 @@ const listsListState = atom({
   ],
 });
 
-const timersTaggedFilterState = atom({
-  key: 'timersTaggedFilterState',
+const taggedFilterState = atom({
+  key: 'taggedFilterState',
   default: [],
 });
 
@@ -126,8 +126,8 @@ const filteredTimersListState = selector({
   key: 'filteredTimersListState',
   get: ({ get }) => {
     let list = get(timersListState);
-    const listed = get(timersListedFilterState);
-    const tagged = get(timersTaggedFilterState);
+    const listed = get(listedFilterState);
+    const tagged = get(taggedFilterState);
     const completed = get(timersCompletedFilterState);
 
     if (listed !== 'All') {
@@ -163,8 +163,8 @@ export {
   timersListState,
   timersCompletedFilterState,
   listsListState,
-  timersListedFilterState,
+  listedFilterState,
   tagsListState,
-  timersTaggedFilterState,
+  taggedFilterState,
   filteredTimersListState,
 }
