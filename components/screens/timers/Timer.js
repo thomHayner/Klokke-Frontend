@@ -23,7 +23,7 @@ import {
   deleteTimer,
 } from '../../../utilities/timersFunctions';
 
-export default function Timer({ timer, serverTimestamp }) {
+export default function Timer({ timer, serverTimestamp, scrollHandler }) {
   const [timersList, setTimersList] = useRecoilState(timersListState);
   const [modalVisible, setModalVisible] = React.useState(false);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
@@ -141,6 +141,8 @@ export default function Timer({ timer, serverTimestamp }) {
       <EditTimerModal
         modalVisible={modalVisible}
         toggleModal={toggleModal}
+        timer={timer}
+        scrollHandler={scrollHandler}
       />
     </View>
   )
