@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
   TimersScreen,
+  EditModal,
   ReportsScreen,
   SettingsScreen
 } from './screensModule';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-function LogoTitle() {
+function TabHeaderLogo() {
   return (
     <View style={styles.wrapper}>
       <View style={styles.iconPadding}>
@@ -21,11 +24,28 @@ function LogoTitle() {
   )
 };
 
+function TimersGroup() {
+  return (
+    <Stack.Navigator screenOptions={{ presentation: 'modal' }}>
+      <Stack.Screen
+        name='TimersScreen'
+        component={TimersScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='TimersEditModal'
+        component={EditModal}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  )
+};
+
 export default function BottomNav() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerLeft: () => <LogoTitle />,
+        headerLeft: () => <TabHeaderLogo />,
         headerTitle: () => {},
         headerStyle: {
           backgroundColor: '#FF8624',
@@ -34,7 +54,7 @@ export default function BottomNav() {
     >
       <Tab.Screen
         name='Timers'
-        component={TimersScreen}
+        component={TimersGroup}
         options={{
           tabBarIcon: () => (
             <MaterialIcons
