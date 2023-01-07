@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useRecoilState } from 'recoil';
 import { timersListState } from '../../../timers_recoil_state';
 import {
@@ -32,13 +33,12 @@ const defaultTimer = {
 };
 
 export default function EditModal({
-  modalVisible,
-  toggleModal,
   timer = defaultTimer,
-  scrollHandler,
+  // scrollHandler,
   mode,
 }) {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
   const [timers, setTimers] = useRecoilState(timersListState);
   const [nameValue, setNameValue] = React.useState(timer.name);
   const [listValue, setListValue] = React.useState(timer.list);
@@ -90,8 +90,8 @@ export default function EditModal({
     setDescriptionValue('');
     setStartValue(0);
     setStopValue(0);
-    setTimeout(()=> scrollHandler(), 100);
-    toggleModal();;
+    // setTimeout(()=> timerListRef.current.scrollToEnd(), 100);
+    navigation.navigate('TimersEditModal');
   };
 
   // const onChangeName = (name) => {
@@ -101,16 +101,6 @@ export default function EditModal({
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.safeContainer}>
-        
-        <Pressable
-          style={[
-              styles.closeButton,
-              { top: insets.top + 10, right: insets.right + 15 }
-          ]}
-          onPress={toggleModal}
-        >
-          <MaterialIcons name='close' size={36} color='black' />
-        </Pressable>
 
         <View style={styles.container}>
           <Text style={styles.textLabel}>Name</Text>
@@ -169,7 +159,7 @@ export default function EditModal({
           </Pressable>
           <Pressable
             style={[styles.buttonBorder, styles.cancel]}
-            onPress={toggleModal}
+            onPress={() => navigation.navigate('TimersScreen')}
           >
             <Text style={styles.buttonLabel}>Cancel</Text>
           </Pressable>
