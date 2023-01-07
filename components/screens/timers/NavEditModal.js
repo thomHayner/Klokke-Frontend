@@ -3,18 +3,12 @@ import { useNavigation } from '@react-navigation/native';
 import { useRecoilState } from 'recoil';
 import { timersListState } from '../../../timers_recoil_state';
 import {
-  Modal,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
-import {
-  SafeAreaProvider,
-  SafeAreaView,
-  useSafeAreaInsets
-} from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import ListsDropdown from './ListsDropdown';
 import TagsMultiSelect from './TagsMultiSelect';
@@ -37,7 +31,6 @@ export default function EditModal({
   // scrollHandler,
   mode,
 }) {
-  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const [timers, setTimers] = useRecoilState(timersListState);
   const [nameValue, setNameValue] = React.useState(timer.name);
@@ -91,7 +84,7 @@ export default function EditModal({
     setStartValue(0);
     setStopValue(0);
     // setTimeout(()=> timerListRef.current.scrollToEnd(), 100);
-    navigation.navigate('TimersEditModal');
+    navigation.navigate('TimersScreen');
   };
 
   // const onChangeName = (name) => {
@@ -99,87 +92,76 @@ export default function EditModal({
   // };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.safeContainer}>
+    <View style={styles.wrapperContainer}>
+      <View style={styles.container}>
+        <Text style={styles.textLabel}>Name</Text>
+        <TextInput
+          style={styles.nameInput}
+          value={nameValue}
+          onChangeText={(name) => {setNameValue(name)}}
+        />
+      </View>
 
-        <View style={styles.container}>
-          <Text style={styles.textLabel}>Name</Text>
+      <View style={styles.container}>
+        <Text  style={styles.textLabel}>List</Text>
+        <ListsDropdown
+          mode={'editTimer'}
+          setEditValue={setListValue}
+        />
+      </View>
+
+      <View style={styles.container}>
+        <Text style={styles.textLabel}>Tags</Text>
+        <TagsMultiSelect />
+      </View>
+
+      <View style={styles.container}>
+        <Text style={styles.textLabel}>Intervals</Text>
+        {/* timer.start.map((n,i,a) => {}) */}
+        {/* map timer intervals, each interval needs to be editable */}
+        <View style={styles.row}>
+          <Text style={[styles.intervalLabel, { marginRight: 4 }]}>
+            Start
+          </Text>
+          <Text style={[styles.intervalLabel, { marginLeft: 4 }]}>
+            Stop
+          </Text>
+        </View>
+        <View style={styles.row}>
           <TextInput
-            style={styles.nameInput}
-            value={nameValue}
-            onChangeText={(name) => {setNameValue(name)}}
+            style={[styles.intervalInput, { marginRight: 4 }]}
+            value={''}
+            onChangeText={(start) => {setStartValue(start)}}
+          />
+          <TextInput
+            style={[styles.intervalInput, { marginLeft: 4 }]}
+            value={''}
+            onChangeText={(stop) => {setStopValue(stop)}}
           />
         </View>
+      </View>
 
-        <View style={styles.container}>
-          <Text  style={styles.textLabel}>List</Text>
-          <ListsDropdown
-            mode={'editTimer'}
-            setEditValue={setListValue}
-          />
-        </View>
-
-        <View style={styles.container}>
-          <Text style={styles.textLabel}>Tags</Text>
-          <TagsMultiSelect />
-        </View>
-
-        <View style={styles.container}>
-          <Text style={styles.textLabel}>Intervals</Text>
-          {/* timer.start.map((n,i,a) => {}) */}
-          {/* map timer intervals, each interval needs to be editable */}
-          <View style={styles.row}>
-            <Text style={[styles.intervalLabel, { marginRight: 4 }]}>
-              Start
-            </Text>
-            <Text style={[styles.intervalLabel, { marginLeft: 4 }]}>
-              Stop
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <TextInput
-              style={[styles.intervalInput, { marginRight: 4 }]}
-              value={''}
-              onChangeText={(start) => {setStartValue(start)}}
-            />
-            <TextInput
-              style={[styles.intervalInput, { marginLeft: 4 }]}
-              value={''}
-              onChangeText={(stop) => {setStopValue(stop)}}
-            />
-          </View>
-        </View>
-
-        <View style={[styles.row, { marginTop: 30, }]}>
-          <Pressable
-            style={[styles.buttonBorder, styles.submit]}
-            onPress={submitTimer}
-          >
-            <Text style={styles.buttonLabel}>Submit</Text>
-          </Pressable>
-          <Pressable
-            style={[styles.buttonBorder, styles.cancel]}
-            onPress={() => navigation.navigate('TimersScreen')}
-          >
-            <Text style={styles.buttonLabel}>Cancel</Text>
-          </Pressable>
-        </View>
-
-      </SafeAreaView>
-    </SafeAreaProvider>
+      <View style={[styles.row, { marginTop: 30, }]}>
+        <Pressable
+          style={[styles.buttonBorder, styles.submit]}
+          onPress={submitTimer}
+        >
+          <Text style={styles.buttonLabel}>Submit</Text>
+        </Pressable>
+        <Pressable
+          style={[styles.buttonBorder, styles.cancel]}
+          onPress={() => navigation.navigate('TimersScreen')}
+        >
+          <Text style={styles.buttonLabel}>Cancel</Text>
+        </Pressable>
+      </View>
+    </View>
   )
 };
 
 const styles = StyleSheet.create({
-  safeContainer: {
-    width: '100%',
-    alignItems: 'start',
-    justifyContent: 'center',
-    paddingTop: 50,
-    paddingHorizontal: 32,
-  },
-  closeButton: {
-    position: 'absolute',
+  wrapperContainer: {
+    padding: 32,
   },
   container: {
     width: '100%',
