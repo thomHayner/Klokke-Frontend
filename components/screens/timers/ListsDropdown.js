@@ -26,6 +26,7 @@ export default function ListsDropdown({
       setSelectedList(list.value);
     };
     if (mode === 'edit' || mode === 'add') {
+      setTimerSelectedList(list.value)
       setEditValue(list.value);
     };
   };
