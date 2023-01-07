@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useRecoilState } from 'recoil';
 import { timersListState } from '../../../timers_recoil_state';
 import {
@@ -10,7 +11,6 @@ import {
   Alert,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import EditTimerModal from './EditTimerModal';
 import {
   displayProperTime,
   renameTimer,
@@ -25,14 +25,10 @@ import {
 } from '../../../utilities/timersFunctions';
 
 export default function Timer({ timer, serverTimestamp, scrollHandler }) {
+  const navigation = useNavigation();
   const [timersList, setTimersList] = useRecoilState(timersListState);
-  const [modalVisible, setModalVisible] = React.useState(false);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
   const index = timersList.findIndex((item) => item === timer);
-  
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
-  };
 
   const TimerActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -57,7 +53,7 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
           timer.isRunning ?
             stopTimerAlert()
           :
-            toggleModal()
+            navigation.navigate('TimersEditModal')
         };
       }
     )
@@ -163,14 +159,6 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
             <MaterialIcons name='menu' size={24} color='black' />
         </View>
       </Pressable>
-
-      <EditTimerModal
-        modalVisible={modalVisible}
-        toggleModal={toggleModal}
-        timer={timer}
-        scrollHandler={scrollHandler}
-        mode='edit'
-      />
     </View>
   )
 };
