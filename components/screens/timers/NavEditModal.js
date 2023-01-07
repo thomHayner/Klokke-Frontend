@@ -27,20 +27,21 @@ const defaultTimer = {
 };
 
 export default function EditModal({
-  timer = defaultTimer,
+  route,
   // scrollHandler,
-  mode,
 }) {
   const navigation = useNavigation();
+  const { indexParam, modeParam } = route.params;
+  const index = Number(indexParam);
   const [timers, setTimers] = useRecoilState(timersListState);
-  const [nameValue, setNameValue] = React.useState(timer.name);
-  const [listValue, setListValue] = React.useState(timer.list);
-  const [tagsValue, setTagsValue] = React.useState(timer.tags);
+  const [nameValue, setNameValue] = React.useState(timers[index].name);
+  const [listValue, setListValue] = React.useState(timers[index].list);
+  const [tagsValue, setTagsValue] = React.useState(timers[index].tags);
   const [descriptionValue, setDescriptionValue] = React.useState(
-    timer.description
+    timers[index].description
   );
-  const [startValue, setStartValue] = React.useState(timer.start);
-  const [stopValue, setStopValue] = React.useState(timer.stop);
+  const [startValue, setStartValue] = React.useState(timers[index].start);
+  const [stopValue, setStopValue] = React.useState(timers[index].stop);
   
   const newTimer = {
     name: nameValue,
@@ -56,18 +57,17 @@ export default function EditModal({
   };
 
   const submitTimer = () => {
-    if (mode === 'add') {
-      const index = timers.length;
+    if (modeParam === 'add') {
+      const newIndex = timers.length;
       setTimers((oldTimersList) => [
         ...oldTimersList,
         {
           ...newTimer,
-          id: index,
+          id: newIndex,
         }
       ])
     };
-    if (mode === 'edit') {
-      const index = timers.findIndex(item => item.id === timer.id);
+    if (modeParam === 'edit') {
       setTimers((oldTimersList) => [
         ...oldTimersList.slice(0, index),
         {
@@ -75,8 +75,8 @@ export default function EditModal({
           id: index,
         },
         ...oldTimersList.slice(index + 1)
-      ]);
-    }
+      ])
+    };
     setNameValue('');
     setListValue('');
     setTagsValue('');
