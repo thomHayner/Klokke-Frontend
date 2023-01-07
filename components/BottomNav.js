@@ -35,7 +35,10 @@ function TimersGroup() {
       <Stack.Screen
         name='TimersEditModal'
         component={EditModal}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          presentation: 'fullScreenModal',
+        }}
       />
     </Stack.Navigator>
   )
