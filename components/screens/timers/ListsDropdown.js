@@ -8,18 +8,21 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default function ListsDropdown({
   mode,
-  setEditValue = () => {},
+  listValue = '',
+  setEditValue,
 }) {
+  //// [STATE] ////
   const [lists, setLists] = useRecoilState(listsListState);
   const [selectedList, setSelectedList] = useRecoilState(listedFilterState);
-  const [onChangeInputValue, setOnChangeInputValue] = React.useState('false');
+  const [timerSelectedList, setTimerSelectedList] = React.useState(listValue);
+  const [onChangeInputValue, setOnChangeInputValue] = React.useState('');
 
   //// [HANDLE SELECTING A NEW LIST] ////
   const handleListSelect = (list) => {
-    if (mode === 'selectList') {
+    if (mode === 'select') {
       setSelectedList(list.value);
     };
-    if (mode === 'editTimer') {
+    if (mode === 'edit' || mode === 'add') {
       setEditValue(list.value);
     };
   };
@@ -60,22 +63,41 @@ export default function ListsDropdown({
 
   return (
     <View style={styles.dropdownWrapper}>
-      <Dropdown
-        style={styles.dropdownComponent}
-        containerStyle={styles.dropdownContainer}
-        data={lists}
-        flatListProps={{
-          ListEmptyComponent: <ListEmptyComponent />,
-        }}
-        labelField='label'
-        onChange={(list) => handleListSelect(list)}
-        onChangeText={(search) => setOnChangeInputValue(search)}
-        placeholder='All Timers'
-        search
-        searchPlaceholder='Search Lists Or Create New List'
-        value={selectedList}
-        valueField='value'
-      />
+      {mode === 'edit' || mode === 'add' ?
+        <Dropdown
+          style={styles.dropdownComponent}
+          containerStyle={styles.dropdownContainer}
+          data={lists}
+          flatListProps={{
+            ListEmptyComponent: <ListEmptyComponent />,
+          }}
+          labelField='label'
+          onChange={(list) => handleListSelect(list)}
+          onChangeText={(search) => setOnChangeInputValue(search)}
+          placeholder='All Timers'
+          search
+          searchPlaceholder='Search Lists Or Create New List'
+          value={timerSelectedList}
+          valueField='value'
+        />
+      :
+        <Dropdown
+          style={styles.dropdownComponent}
+          containerStyle={styles.dropdownContainer}
+          data={lists}
+          flatListProps={{
+            ListEmptyComponent: <ListEmptyComponent />,
+          }}
+          labelField='label'
+          onChange={(list) => handleListSelect(list)}
+          onChangeText={(search) => setOnChangeInputValue(search)}
+          placeholder='All Timers'
+          search
+          searchPlaceholder='Search Lists Or Create New List'
+          value={selectedList}
+          valueField='value'
+        />
+      }
     </View>
   )
 };
