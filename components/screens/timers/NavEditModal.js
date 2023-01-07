@@ -103,7 +103,7 @@ export default function EditModal({
         <TextInput
           style={styles.descriptionInput}
           value={descriptionValue}
-          onChangeText={(description) => {setDescriptionValue(name)}}
+          onChangeText={(description) => {setDescriptionValue(description)}}
         />
       </View>
 
