@@ -99,6 +99,15 @@ export default function EditModal({
       </View>
 
       <View style={styles.container}>
+        <Text style={styles.textLabel}>Description</Text>
+        <TextInput
+          style={styles.descriptionInput}
+          value={descriptionValue}
+          onChangeText={(description) => {setDescriptionValue(name)}}
+        />
+      </View>
+
+      <View style={styles.container}>
         <Text  style={styles.textLabel}>List</Text>
         <ListsDropdown
           mode={modeParam}
@@ -172,6 +181,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   nameInput: {
+    height: 40,
+    width: "100%",
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
+  descriptionInput: {
     height: 40,
     width: "100%",
     borderWidth: 1,
