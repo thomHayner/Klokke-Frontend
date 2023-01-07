@@ -24,11 +24,12 @@ import {
   deleteTimer,
 } from '../../../utilities/timersFunctions';
 
-export default function Timer({ timer, serverTimestamp, scrollHandler }) {
+export default function Timer({ timer, timerIndex, serverTimestamp, scrollHandler }) {
   const navigation = useNavigation();
   const [timersList, setTimersList] = useRecoilState(timersListState);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
   const index = timersList.findIndex((item) => item === timer);
+  // const timer = timersList[timerIndex];
 
   const TimerActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -62,7 +63,7 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
     )
   };
 
-  const stopTimerAlert = () =>
+  const stopTimerAlert = () => {
     Alert.alert(
       "Alert Title",
       "The timer needs to be stopped before editing!",
@@ -84,6 +85,15 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
         }
       ]
     );
+  };
+
+  const Tag = ({ tag }) => (
+    <View style={styles.tag}>
+      <Text style={styles.listName}>
+        {tag}
+      </Text>
+    </View>
+  )
 
   return (
     <View style={[styles.container, styles.row, styles.timerOuterWrapper]}>
@@ -94,26 +104,19 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
         }}
       >
         <View style={styles.mainCompartmentTop}>
-          <Text style={[styles.row, styles.timerName]}>
+          <Text style={styles.timerName}>
             {timer.name}
           </Text>
           <Text style={[styles.row, styles.listName]}>
             {'List: '}
             {timer.list ? timer.list : 'none'}
           </Text>
-          <Text style={[styles.row, styles.listName]}>
-            {'Tags: '}
-            {timer.tags.length > 0 ? 
-              timer.tags.map((tag, index)=> {
-                index === timer.tags.length ?
-                  tag
-                :
-                  tag + ', '
-              })
-            :
-              'none'
-            }
-          </Text>
+          <View style={styles.row}>
+            <Text style={styles.listName}>
+              {'Tags: '}
+            </Text>
+              {timer.tags.map((tag) => (<Tag tag={tag} />))}
+          </View>
         </View>
 
         <View style={[styles.row, styles.mainCompartmentBottom]}>
@@ -212,6 +215,12 @@ const styles = StyleSheet.create({
     padding: 4,
     fontSize: 20,
     fontStyle: 'italic',
+  },
+  tag: {
+    borderColor: '#dddddd',
+    borderWidth: 1,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
   },
   clockContainer: {
     flex: 4,
