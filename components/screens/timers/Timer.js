@@ -53,7 +53,10 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
           timer.isRunning ?
             stopTimerAlert()
           :
-            navigation.navigate('TimersEditModal')
+            navigation.navigate('TimersEditModal', {
+              indexParam: index,
+              modeParam: 'edit',
+            })
         };
       }
     )
@@ -68,7 +71,10 @@ export default function Timer({ timer, serverTimestamp, scrollHandler }) {
           text: "Stop Timer",
           onPress: () => {
             handleTimer(index, timersList, setTimersList, serverTimestamp)
-            toggleModal();
+            navigation.navigate('TimersEditModal', {
+              indexParam: index,
+              modeParam: 'edit',
+            })
           },
         },
         {
