@@ -22,7 +22,7 @@ export default function ListsDropdown({
     if (mode === 'select') {
       setSelectedList(list.value);
     };
-    if (mode === 'edit') {
+    if (mode === 'edit' || mode === 'add') {
       setEditValue(list.value);
     };
   };
@@ -63,7 +63,7 @@ export default function ListsDropdown({
 
   return (
     <View style={styles.dropdownWrapper}>
-      {mode === 'edit' ?
+      {mode === 'edit' || mode === 'add' ?
         <Dropdown
           style={styles.dropdownComponent}
           containerStyle={styles.dropdownContainer}
