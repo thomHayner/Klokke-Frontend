@@ -79,7 +79,7 @@ export default function EditModal({
     };
     setNameValue('');
     setListValue('');
-    setTagsValue('');
+    setTagsValue([]);
     setDescriptionValue('');
     setStartValue(0);
     setStopValue(0);
@@ -118,7 +118,11 @@ export default function EditModal({
 
       <View style={styles.container}>
         <Text style={styles.textLabel}>Tags</Text>
-        <TagsMultiSelect />
+        <TagsMultiSelect
+          mode={modeParam}
+          tagsValue={tagsValue}
+          setEditValue={setTagsValue}
+        />
       </View>
 
       <View style={styles.container}>
