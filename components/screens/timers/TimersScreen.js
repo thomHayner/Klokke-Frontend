@@ -10,7 +10,6 @@ const Stack = createStackNavigator();
 
 export default function TimersScreen() {
 
-  const TimersHome = () => {
     return (
     <View style={styles.safeAreaContainer}>
       <LinearGradient
@@ -30,22 +29,6 @@ export default function TimersScreen() {
       <TimersList mode={'selectList'} />
     </View>
     )
-  };
-
-  return (
-    <Stack.Navigator screenOptions={{ presentation: 'modal' }}>
-      <Stack.Screen
-        name='TimersScreen'
-        component={TimersHome}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='TimersEditModal'
-        component={EditModal}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
-  );
 };
 
 const styles = StyleSheet.create({
