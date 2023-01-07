@@ -33,16 +33,16 @@ export default function EditModal({
   const navigation = useNavigation();
   const { indexParam, modeParam } = route.params;
   const index = Number(indexParam);
-  const [timers, setTimers] = useRecoilState(timersListState);
-  const [nameValue, setNameValue] = React.useState(timers[index].name);
-  const [listValue, setListValue] = React.useState(timers[index].list);
-  const [tagsValue, setTagsValue] = React.useState(timers[index].tags);
+  const [timersList, setTimersList] = useRecoilState(timersListState);
+  const [nameValue, setNameValue] = React.useState(timersList[index].name);
+  const [listValue, setListValue] = React.useState(timersList[index].list);
+  const [tagsValue, setTagsValue] = React.useState(timersList[index].tags);
   const [descriptionValue, setDescriptionValue] = React.useState(
-    timers[index].description
+    timersList[index].description
   );
-  const [startValue, setStartValue] = React.useState(timers[index].start);
-  const [stopValue, setStopValue] = React.useState(timers[index].stop);
-  
+  const [startValue, setStartValue] = React.useState(timersList[index].start);
+  const [stopValue, setStopValue] = React.useState(timersList[index].stop);
+
   const newTimer = {
     name: nameValue,
     description: descriptionValue,
@@ -58,8 +58,8 @@ export default function EditModal({
 
   const submitTimer = () => {
     if (modeParam === 'add') {
-      const newIndex = timers.length;
-      setTimers((oldTimersList) => [
+      const newIndex = timersList.length;
+      setTimersList((oldTimersList) => [
         ...oldTimersList,
         {
           ...newTimer,
@@ -68,7 +68,7 @@ export default function EditModal({
       ])
     };
     if (modeParam === 'edit') {
-      setTimers((oldTimersList) => [
+      setTimersList((oldTimersList) => [
         ...oldTimersList.slice(0, index),
         {
           ...newTimer,
@@ -87,10 +87,6 @@ export default function EditModal({
     navigation.navigate('TimersScreen');
   };
 
-  // const onChangeName = (name) => {
-  //   setNameValue(name);
-  // };
-
   return (
     <View style={styles.wrapperContainer}>
       <View style={styles.container}>
@@ -105,7 +101,8 @@ export default function EditModal({
       <View style={styles.container}>
         <Text  style={styles.textLabel}>List</Text>
         <ListsDropdown
-          mode={'editTimer'}
+          mode={modeParam}
+          listValue={listValue}
           setEditValue={setListValue}
         />
       </View>
