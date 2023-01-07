@@ -13,7 +13,7 @@ import Timer from './Timer';
 import EditTimerModal from './EditTimerModal';
 
 export default function TimersList() {
-  const timers = useRecoilValue(filteredTimersListState);
+  const timersList = useRecoilValue(filteredTimersListState);
   const [serverTimestamp, setServerTimestamp] = React.useState(0);
   const [modalVisible, setModalVisible] = React.useState(false)
   const [serverStatus, setServerStatus] = React.useState(false);
@@ -56,13 +56,17 @@ export default function TimersList() {
   };
 
   //// [COMPONENTS] ////
-  const RenderItem = ({ item }) => (
-    <Timer
-      timer={item}
-      serverTimestamp={serverTimestamp}
-      scrollHandler={handleScrollToEnd}
-    />
-  );
+  const RenderItem = ({ item }) => {
+    const index = timersList.findIndex((timer) => timer === item);
+    return (
+      <Timer
+        timer={item}
+        timerIndex={index}
+        serverTimestamp={serverTimestamp}
+        scrollHandler={handleScrollToEnd}
+      />
+    )
+  };
 
   const ListEmptyComponent = () => {
     return (
@@ -89,11 +93,11 @@ export default function TimersList() {
     <View style={styles.wrapper}>
       <FlatList
         ref={timerListRef}
-        data={timers}
+        data={timersList}
         keyExtractor={(item, index) => index + '' + item.id}
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
-        // initialNumToRender={timers.length}
+        // initialNumToRender={timersList.length}
         renderItem={RenderItem}
         ListEmptyComponent={ListEmptyComponent}
         ListFooterComponent={ListFooterComponent()}
