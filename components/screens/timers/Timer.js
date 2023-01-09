@@ -89,8 +89,8 @@ export default function Timer({ timer, timerIndex, serverTimestamp, scrollHandle
 
   const Tag = ({ tag }) => (
     <View style={styles.tag}>
-      <Text style={styles.listName}>
-        {tag}
+      <Text style={styles.tagName}>
+        {`${tag}`}
       </Text>
     </View>
   )
@@ -111,11 +111,11 @@ export default function Timer({ timer, timerIndex, serverTimestamp, scrollHandle
             {'List: '}
             {timer.list ? timer.list : 'none'}
           </Text>
-          <View style={styles.row}>
+          <View style={styles.flexRow}>
             <Text style={styles.listName}>
               {'Tags: '}
             </Text>
-              {timer.tags.map((tag) => (<Tag tag={tag} />))}
+              {timer.tags.map((tag) => (<Tag tag={tag} key={`${tag}`} />))}
           </View>
         </View>
 
@@ -181,6 +181,10 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
   },
+  flexRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   timerOuterWrapper: {
     minHeight: 100,
     borderRadius: 8,
@@ -221,6 +225,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+  },
+  tagName: {
+    fontSize: 20,
   },
   clockContainer: {
     flex: 4,
