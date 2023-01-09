@@ -145,11 +145,6 @@ const handleTimer = (index, timersList, setTimersList, serverTimestamp) => {
   let _timer = _tempTimers[index];
   
   if (!_timer.isCompleted) {
-    console.log('isRunning: ' + _timer.isRunning)
-    console.log('start: ' + _timer.start)
-    console.log('stop: ' + _timer.stop)
-    console.log('elapsed: ' + _timer.elapsed)
-    
     if (_timer.isRunning) {
       _tempTimers.splice(index, 1, {
         ..._timer,
