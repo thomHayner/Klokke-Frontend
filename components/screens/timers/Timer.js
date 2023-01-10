@@ -24,7 +24,12 @@ import {
   deleteTimer,
 } from '../../../utilities/timersFunctions';
 
-export default function Timer({ timer, timerIndex, serverTimestamp, scrollHandler }) {
+export default function Timer({
+  timer,
+  timerIndex,
+  serverTimestamp,
+  scrollHandler
+}) {
   const navigation = useNavigation();
   const [timersList, setTimersList] = useRecoilState(timersListState);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
@@ -93,7 +98,7 @@ export default function Timer({ timer, timerIndex, serverTimestamp, scrollHandle
         {`${tag}`}
       </Text>
     </View>
-  )
+  );
 
   return (
     <View style={[styles.container, styles.row, styles.timerOuterWrapper]}>
