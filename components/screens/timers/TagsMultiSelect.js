@@ -1,3 +1,4 @@
+//// [IMPORTS] ////
 import * as React from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { useRecoilState } from 'recoil';
@@ -12,33 +13,33 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function TagsMultiSelect({
   mode,
   tagsValue = [],
-  setEditValue,
+  setEditValue = () => {},
 }) {
   //// [STATE] ////
   const [tagsList, setTagsList] = useRecoilState(tagsListState);
-  const [selectedTags, setSelectedTags] = useRecoilState(taggedFilterState);
+  const [filterTagsList, setFilterTagsList] = useRecoilState(taggedFilterState);
   const [timerTagsList, setTimerTagsList] = React.useState(tagsValue);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('');
 
-  //// [HANDLE SELECTING NEW TAGs] ////
-  const handleTagsSelect = (tag) => {
-    if (mode === 'select') {
-      const newTags = [...tagsList];
-      newTags.push(tag.value);
-      setSelectedTags(newTags);
-    };
-    if (mode === 'edit' || mode === 'add') {
-      if (!timerTagsList.includes(`${tag}`)) {
-        const newTags = [...timerTagsList];
-        newTags.push(tag);
-        setTimerTagsList(newTags);
-        setEditValue(newTags);
-      }
-    };
-  };
+  //// [FETCH DATA] ////
+  // React.useEffect(() => {
+  //   setTagsList(DUMMY_LISTS)
+  // }, []);
 
-  //// [ADD A NEW TAG] ////
-  const addTag = () => {
+  //// [INVOKE setTagsValue IN <EditModalScreen />] ////
+  React.useEffect(() => {
+    const newTags = [...timerTagsList];
+    setEditValue(newTags);
+  }, [timerTagsList]);
+
+  //// [] ////
+  // React.useEffect(() => {
+  //   const newTags = [...filterTagsList];
+  //   setEditValue(newTags);
+  // }, [filterTagsList]);
+
+  //// [ADD A NEW TAG GLOBALLY] ////
+  const addTagGlobally = () => {
     const newTag = {
       label: onChangeInputValue,
       value: onChangeInputValue,
@@ -47,20 +48,14 @@ export default function TagsMultiSelect({
       ...oldTagsList,
       newTag,
     ]);
-    handleTagsSelect(newTag);
     setOnChangeInputValue('');
   };
 
-  //// [FETCH DATA] ////
-  // React.useEffect(() => {
-  //   setTagsList(DUMMY_LISTS)
-  // }, []);
-
-  //// [COMPONENT TO RENDER IF LISTS IS EMPTY] ////
+  //// [COMPONENT TO RENDER IF RECOIL search OR tagsListState IS EMPTY] ////
   const RenderEmpty = () => {
     return (
       tagsList.length > 0 ?
-        <Pressable style={styles.emptyContainer} onPress={addTag}>
+        <Pressable style={styles.emptyContainer} onPress={addTagGlobally}>
           <MaterialIcons name="playlist-add" size={24} color="black" />
           <Text>Create A New Tag</Text>
         </Pressable>
@@ -71,68 +66,74 @@ export default function TagsMultiSelect({
     )
   };
 
+  //// [COMPONENT TO RENDER ANY TAG LINE ITEM IN DROPDOWN] ////
   const RenderItem = (item) => {
     return (
       <View style={styles.item}>
         <Text style={styles.selectedTextStyle}>{item.label}</Text>
-        <MaterialIcons name="tag" size={24} color="black" />
+        {/* <MaterialIcons name="tag" size={24} color="black" /> */}
       </View>
     );
   };
 
+  //// [COMPONENT TO RENDER A SELECTED TAG LINE ITEM IN DROPDOWN] ////
   const RenderSelectedItem = (item, unSelect) => (
     <Pressable onPress={() => unSelect && unSelect(item)}>
       <View style={styles.selectedStyle}>
         <Text style={styles.textSelectedStyle}>{item.label}</Text>
         <MaterialIcons name="delete" size={24} color="black" />
+        {/* <MaterialIcons name="close" size={24} color="black" /> */}
       </View>
     </Pressable>
   );
 
+  //// [MAIN COMPONENT] ////
   return (
     <View style={styles.dropdownWrapper}>
       {mode === 'edit' || mode === 'add' ?
         <MultiSelect
           style={styles.dropdown}
-          // containerStyle={styles.containerStyle}
+          containerStyle={styles.containerStyle}
           placeholderStyle={styles.placeholderStyle}
-          // selectedStyle={styles.selectedStyle}
+          selectedStyle={styles.selectedStyle}
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
           data={tagsList}
-          value={selectedTags}
+          value={timerTagsList}
           labelField='label'
           valueField='value'
-          placeholder='All Tags'
+          placeholder='Tags'
           search
           searchPlaceholder='Search Tags'
-          onChange={(tag) => handleTagsSelect(tag)}
+          onChange={(item) => setTimerTagsList(item)}
           onChangeText={(search) => setOnChangeInputValue(search)}
-          // flatListProps={{
-          //   ListEmptyComponent: <RenderEmpty />,
-          // }}
           renderItem={RenderItem}
           renderSelectedItem={RenderSelectedItem}
+          flatListProps={{
+            ListEmptyComponent: <RenderEmpty />,
+          }}
         />
       :
         <MultiSelect
           style={styles.dropdown}
           containerStyle={styles.containerStyle}
-          // placeholderStyle={styles.placeholderStyle}
-          // selectedStyle={styles.selectedStyle}
-          // selectedTextStyle={styles.selectedTextStyle}
-          // inputSearchStyle={styles.inputSearchStyle}
+          placeholderStyle={styles.placeholderStyle}
+          selectedStyle={styles.selectedStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
           data={tagsList}
-          value={selectedTags}
+          value={filterTagsList}
           labelField='value'
           valueField='value'
-          placeholder='All Tags'
+          placeholder='Tags'
           search
           searchPlaceholder='Search Tags'
-          // onChange={(tag) => handleTagsSelect(tag)}
+          onChange={(tag) => setFilterTagsList(tag)}
           onChangeText={(search) => setOnChangeInputValue(search)}
+          renderItem={RenderItem}
+          renderSelectedItem={RenderSelectedItem}
           flatListProps={{
             ListEmptyComponent: <RenderEmpty />,
           }}
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     borderRadius: 8,
-    marginTop: 4,
+    // marginTop: 4,
   },
   placeholderStyle: {
     fontSize: 16,
@@ -219,5 +220,24 @@ const styles = StyleSheet.create({
   textSelectedStyle: {
     marginRight: 5,
     fontSize: 16,
+  },
+  tagRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingVertical: 12,
+  },
+  tag: {
+    flexDirection: 'row',
+    borderColor: '#dddddd',
+    borderWidth: 1,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+  },
+  tagName: {
+    fontSize: 20,
   },
 });
