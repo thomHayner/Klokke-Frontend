@@ -87,24 +87,6 @@ export default function EditModal({
     navigation.navigate('TimersScreen');
   };
 
-  const removeTag = (tag) => {
-    const tagIndex = tagsValue.findIndex((item) => item === tag);
-    const newTagsValue = [...tagsValue];
-    newTagsValue.splice(tagIndex, 1);
-    setTagsValue(newTagsValue);
-  };
-
-  const Tag = ({ tag }) => (
-    <View style={styles.tag}>
-      <Text style={styles.tagName}>
-        {`${tag}`}
-      </Text>
-      <Pressable onPress={(tag)=> removeTag()}>
-        <MaterialIcons name='close' size={24} color='black' />
-      </Pressable>
-    </View>
-  );
-
   return (
     <View style={styles.wrapperContainer}>
       <View style={styles.container}>
