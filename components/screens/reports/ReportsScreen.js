@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import ListSelect from '../timers/DropdownListsSelect';
 import TagsMultiSelect from '../timers/DropdownTagsMultiSelect';
 
@@ -25,11 +26,7 @@ export default function ReportsScreen() {
           height: '100%',
         }}
       />
-      <ScrollView
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-      >
-        
+
         <View style={styles.container}>
           <View style={[styles.sectionHeader, styles.row]}>
             <Text style={styles.sectionHeaderText}>Filter</Text>
@@ -52,6 +49,11 @@ export default function ReportsScreen() {
           </View>
         </View>
         
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
+
         <View style={styles.container}>
           <View style={[styles.sectionHeader, styles.row]}>
             <Text style={styles.sectionHeaderText}>Time Sheet</Text>
@@ -66,7 +68,9 @@ export default function ReportsScreen() {
             <Text>Chart / Graph / TimeSheet GOES HERE</Text>
           </View>
         </View>
-        
+
+      </ScrollView>
+
         <View style={styles.container}>
           <View style={[styles.sectionHeader, styles.row]}>
             <Text style={styles.sectionHeaderText}>Export</Text>
@@ -84,14 +88,35 @@ export default function ReportsScreen() {
               style={styles.icon}
             />
           </View>
-          <View style={styles.sectionBody}>
-            <Text>Email Report GOES HERE</Text>
-            <Text>Export to .pdf/.csv GOES HERE</Text>
-            <Text>Print Goes Here</Text>
+
+          <View style={[styles.sectionBody, styles.row]}>
+            <Pressable
+              style={[styles.buttonBorder, styles.csvButton]}
+              onPress={() => {}}
+            >
+              <FontAwesome5 name="file-csv" size={24} color="black" />
+            </Pressable>
+            <Pressable
+              style={[styles.buttonBorder, styles.pdfButton]}
+              onPress={() => {}}
+            >
+              <MaterialIcons name="picture-as-pdf" size={24} color="black" />
+            </Pressable>
+            <Pressable
+              style={[styles.buttonBorder, styles.pdfButton]}
+              onPress={() => {}}
+            >
+              <MaterialIcons name="print" size={24} color="black" />
+            </Pressable>
+            <Pressable
+              style={[styles.buttonBorder, styles.emailButton]}
+              onPress={() => {}}
+            >
+              <MaterialIcons name="email" size={24} color="black" />
+            </Pressable>
           </View>
         </View>
 
-      </ScrollView>
     </View>
   );
 };
@@ -137,7 +162,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    marginHorizontal: 8,
+    marginLeft: 3,
   },
   dropdownsContainer: {
     width: '100%',
@@ -176,14 +201,14 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     backgroundColor: 'red', 
   },
-  lightModeButton: {
+  csvButton: {
     marginRight: 16,
     marginLeft: 8,
   },
-  darkModeButton: {
+  pdfButton: {
     marginHorizontal: 8,
   },
-  systemModeButton: {
+  emailButton: {
     marginRight: 8,
     marginLeft: 16,
   },
