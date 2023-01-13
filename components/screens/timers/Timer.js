@@ -75,20 +75,20 @@ export default function Timer({
 
   const stopTimerAlert = () => {
     Alert.alert(
-      "Alert Title",
-      "The timer needs to be stopped before editing!",
+      'Alert Title',
+      'The timer needs to be stopped before editing!',
       [
         {
-          text: "Stop Timer",
+          text: 'Stop Timer',
           onPress: () => {
             handleTimer(index, timersList, setTimersList, serverTimestamp);
             toggleModal();
           },
         },
         {
-          text: "Cancel",
+          text: 'Cancel',
           onPress: () => {},
-          style: "cancel",
+          style: 'cancel',
         }
       ]
     )

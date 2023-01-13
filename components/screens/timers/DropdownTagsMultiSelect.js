@@ -49,7 +49,7 @@ export default function TagsMultiSelect({
     return (
       tagsList.length > 0 ?
         <Pressable style={styles.emptyContainer} onPress={addTagGlobally}>
-          <MaterialIcons name="playlist-add" size={24} color="black" />
+          <MaterialIcons name='playlist-add' size={24} color='black' />
           <Text>Create A New Tag</Text>
         </Pressable>
       :
@@ -64,7 +64,7 @@ export default function TagsMultiSelect({
     return (
       <View style={styles.item}>
         <Text style={styles.selectedTextStyle}>{item.label}</Text>
-        {/* <MaterialIcons name="tag" size={24} color="black" /> */}
+        {/* <MaterialIcons name='tag' size={24} color='black' /> */}
       </View>
     );
   };
@@ -74,8 +74,8 @@ export default function TagsMultiSelect({
     <Pressable onPress={() => unSelect && unSelect(item)}>
       <View style={styles.selectedStyle}>
         <Text style={styles.textSelectedStyle}>{item.label}</Text>
-        <MaterialIcons name="delete" size={24} color="black" />
-        {/* <MaterialIcons name="close" size={24} color="black" /> */}
+        <MaterialIcons name='delete' size={24} color='black' />
+        {/* <MaterialIcons name='close' size={24} color='black' /> */}
       </View>
     </Pressable>
   );

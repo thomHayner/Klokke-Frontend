@@ -47,7 +47,7 @@ export default function ListSelect({
     return (
       lists.length > 0 ?
         <Pressable style={styles.emptyContainer} onPress={addList}>
-          <MaterialIcons name="playlist-add" size={24} color="black" />
+          <MaterialIcons name='playlist-add' size={24} color='black' />
           <Text>Create A New List</Text>
         </Pressable>
       :

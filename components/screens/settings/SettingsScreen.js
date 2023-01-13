@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: "100%",
+    width: '100%',
     backgroundColor: '#FFF',
     borderWidth: 1,
     borderColor: 'black',

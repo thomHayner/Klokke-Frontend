@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   },
   nameInput: {
     height: 40,
-    width: "100%",
+    width: '100%',
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: 'black',
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   descriptionInput: {
     height: 40,
-    width: "100%",
+    width: '100%',
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: 'black',
