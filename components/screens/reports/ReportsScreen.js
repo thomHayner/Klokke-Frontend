@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Pressable,
   ScrollView,
@@ -11,12 +12,18 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import ListSelect from '../timers/DropdownListsSelect';
 import TagsMultiSelect from '../timers/DropdownTagsMultiSelect';
+import {
+  print,
+  printToPdfFile,
+  selectPrinter,
+} from './utils/exportReportUtils';
 
 export default function ReportsScreen() {
+  // const [selectedPrinter, setSelectedPrinter] = React.useState();
+
   return (
     <View style={styles.wrapperContainer}>
       <LinearGradient
-        // Background Linear Gradient
         colors={['rgba(36, 157, 255, 1)', 'transparent']}
         style={{
           position: 'absolute',
@@ -98,13 +105,13 @@ export default function ReportsScreen() {
             </Pressable>
             <Pressable
               style={[styles.buttonBorder, styles.pdfButton]}
-              onPress={() => {}}
+              onPress={printToPdfFile}
             >
               <MaterialIcons name="picture-as-pdf" size={24} color="black" />
             </Pressable>
             <Pressable
               style={[styles.buttonBorder, styles.pdfButton]}
-              onPress={() => {}}
+              onPress={print}
             >
               <MaterialIcons name="print" size={24} color="black" />
             </Pressable>
@@ -167,7 +174,6 @@ const styles = StyleSheet.create({
   dropdownsContainer: {
     width: '100%',
     paddingTop: 8,
-    // paddingHorizontal: 16,
     gap: 4,
   },
   dropdownsSpacer: {
