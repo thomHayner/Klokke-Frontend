@@ -30,7 +30,6 @@ export default function SettingsScreen() {
 
         <View style={styles.container}>
           <View style={styles.sectionHeader}>
-            {/* <Text style={styles.sectionHeaderText}>Profile Image</Text> */}
             <Text style={styles.sectionHeaderText}>Account</Text>
           </View>
           <View style={styles.sectionBody}>
