@@ -32,12 +32,6 @@ export default function TagsMultiSelect({
     setEditValue(newTags);
   }, [timerTagsList]);
 
-  //// [] ////
-  // React.useEffect(() => {
-  //   const newTags = [...filterTagsList];
-  //   setEditValue(newTags);
-  // }, [filterTagsList]);
-
   //// [ADD A NEW TAG GLOBALLY] ////
   const addTagGlobally = () => {
     const newTag = {
