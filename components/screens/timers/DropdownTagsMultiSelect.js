@@ -98,7 +98,7 @@ export default function TagsMultiSelect({
           valueField='value'
           placeholder='Tags'
           search
-          searchPlaceholder='Search Tags'
+          searchPlaceholder='Search Tags Or Create New Tag'
           onChange={(tag) => setTimerTagsValue(tag)}
           onChangeText={(search) => setOnChangeInputValue(search)}
           renderItem={RenderItem}
@@ -118,11 +118,11 @@ export default function TagsMultiSelect({
           iconStyle={styles.iconStyle}
           data={tagsList}
           value={filterTagsValue}
-          labelField='value'
+          labelField='label'
           valueField='value'
           placeholder='Tags'
           search
-          searchPlaceholder='Search Tags'
+          searchPlaceholder='Search Tags Or Create New Tag'
           onChange={(tag) => setFilterTagsValue(tag)}
           onChangeText={(search) => setOnChangeInputValue(search)}
           renderItem={RenderItem}

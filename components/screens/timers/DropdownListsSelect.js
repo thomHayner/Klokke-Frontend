@@ -64,34 +64,34 @@ export default function ListSelect({
           style={styles.dropdown}
           containerStyle={styles.containerStyle}
           data={lists}
-          flatListProps={{
-            ListEmptyComponent: <ListEmptyComponent />,
-          }}
+          value={timerSelectedList}
           labelField='label'
-          onChange={(list) => setTimerSelectedList(list.value)}
-          onChangeText={(search) => setOnChangeInputValue(search)}
+          valueField='value'
           placeholder='All Timers'
           search
           searchPlaceholder='Search Lists Or Create New List'
-          value={timerSelectedList}
-          valueField='value'
+          onChange={(list) => setTimerSelectedList(list.value)}
+          onChangeText={(search) => setOnChangeInputValue(search)}
+          flatListProps={{
+            ListEmptyComponent: <ListEmptyComponent />,
+          }}
         />
       :
         <Dropdown
           style={styles.dropdown}
           containerStyle={styles.containerStyle}
           data={lists}
-          flatListProps={{
-            ListEmptyComponent: <ListEmptyComponent />,
-          }}
+          value={filterListValue}
           labelField='label'
-          onChange={(list) => setFilterListValue(list.value)}
-          onChangeText={(search) => setOnChangeInputValue(search)}
+          valueField='value'
           placeholder='All Timers'
           search
           searchPlaceholder='Search Lists Or Create New List'
-          value={filterListValue}
-          valueField='value'
+          onChange={(list) => setFilterListValue(list.value)}
+          onChangeText={(search) => setOnChangeInputValue(search)}
+          flatListProps={{
+            ListEmptyComponent: <ListEmptyComponent />,
+          }}
         />
       }
     </View>
