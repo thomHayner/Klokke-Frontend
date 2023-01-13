@@ -98,25 +98,25 @@ export default function ReportsScreen() {
 
           <View style={[styles.sectionBody, styles.row]}>
             <Pressable
-              style={[styles.buttonBorder, styles.csvButton]}
+              style={[styles.buttonBorder, styles.leftButton]}
               onPress={() => {}}
             >
               <FontAwesome5 name="file-csv" size={24} color="black" />
             </Pressable>
             <Pressable
-              style={[styles.buttonBorder, styles.pdfButton]}
+              style={[styles.buttonBorder, styles.centerButton]}
               onPress={printToPdfFile}
             >
               <MaterialIcons name="picture-as-pdf" size={24} color="black" />
             </Pressable>
             <Pressable
-              style={[styles.buttonBorder, styles.pdfButton]}
+              style={[styles.buttonBorder, styles.centerButton]}
               onPress={print}
             >
               <MaterialIcons name="print" size={24} color="black" />
             </Pressable>
             <Pressable
-              style={[styles.buttonBorder, styles.emailButton]}
+              style={[styles.buttonBorder, styles.rightButton]}
               onPress={() => {}}
             >
               <MaterialIcons name="email" size={24} color="black" />
@@ -135,14 +135,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 32,
     paddingTop: 8,
-    paddingBottom: 16,
+    paddingBottom: 0,
   },
   scrollView: {
     flex: 1,
     width: '100%',
   },
   container: {
-    // flex: 1,
     width: '100%',
     alignItems: 'start',
     justifyContent: 'center',
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 8,
+    marginVertical: 4,
     height: 40,
     borderWidth: 1,
     borderColor: 'black',
@@ -192,30 +191,15 @@ const styles = StyleSheet.create({
   buttonLabel: {
     fontSize: 16,
   },
-  premiumButton: {
-    width: '75%',
-    marginHorizontal: 8,
-    backgroundColor: 'lightblue', 
-  },
-  addButton: {
-    marginRight: 16,
-    marginLeft: 8,
-    backgroundColor: 'green',
-  },
-  deleteButton: {
+  leftButton: {
     marginRight: 8,
     marginLeft: 16,
-    backgroundColor: 'red', 
   },
-  csvButton: {
-    marginRight: 16,
-    marginLeft: 8,
-  },
-  pdfButton: {
+  centerButton: {
     marginHorizontal: 8,
   },
-  emailButton: {
-    marginRight: 8,
-    marginLeft: 16,
+  rightButton: {
+    marginRight: 16,
+    marginLeft: 8,
   },
 });
