@@ -17,20 +17,14 @@ export default function TagsMultiSelect({
 }) {
   //// [STATE] ////
   const [tagsList, setTagsList] = useRecoilState(tagsListState);
-  const [filterTagsList, setFilterTagsList] = useRecoilState(taggedFilterState);
-  const [timerTagsList, setTimerTagsList] = React.useState(tagsValue);
+  const [filterTagsValue, setFilterTagsValue] = useRecoilState(taggedFilterState);
+  const [timerTagsValue, setTimerTagsValue] = React.useState(tagsValue);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('');
-
-  //// [FETCH DATA] ////
-  // React.useEffect(() => {
-  //   setTagsList(DUMMY_LISTS)
-  // }, []);
 
   //// [INVOKE setTagsValue IN <EditModalScreen />] ////
   React.useEffect(() => {
-    const newTags = [...timerTagsList];
-    setEditValue(newTags);
-  }, [timerTagsList]);
+    setEditValue(timerTagsValue);
+  }, [timerTagsValue]);
 
   //// [ADD A NEW TAG GLOBALLY] ////
   const addTagGlobally = () => {
@@ -42,6 +36,11 @@ export default function TagsMultiSelect({
       ...oldTagsList,
       newTag,
     ]);
+    if (mode === 'select') {
+      const newFilterValue = [...filterTagsValue];
+      newFilterValue.push(onChangeInputValue)
+      setFilterTagsValue(newFilterValue);
+    };
     setOnChangeInputValue('');
   };
 
@@ -94,13 +93,13 @@ export default function TagsMultiSelect({
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
           data={tagsList}
-          value={timerTagsList}
+          value={timerTagsValue}
           labelField='label'
           valueField='value'
           placeholder='Tags'
           search
           searchPlaceholder='Search Tags'
-          onChange={(item) => setTimerTagsList(item)}
+          onChange={(tag) => setTimerTagsValue(tag)}
           onChangeText={(search) => setOnChangeInputValue(search)}
           renderItem={RenderItem}
           renderSelectedItem={RenderSelectedItem}
@@ -118,13 +117,13 @@ export default function TagsMultiSelect({
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
           data={tagsList}
-          value={filterTagsList}
+          value={filterTagsValue}
           labelField='value'
           valueField='value'
           placeholder='Tags'
           search
           searchPlaceholder='Search Tags'
-          onChange={(tag) => setFilterTagsList(tag)}
+          onChange={(tag) => setFilterTagsValue(tag)}
           onChangeText={(search) => setOnChangeInputValue(search)}
           renderItem={RenderItem}
           renderSelectedItem={RenderSelectedItem}
