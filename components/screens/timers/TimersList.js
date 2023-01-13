@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useRecoilValue } from 'recoil';
 import { filteredTimersListState } from '../../../timers_recoil_state';
 import {
@@ -13,16 +14,15 @@ import Timer from './Timer';
 import EditTimerModal from './EditTimerModal';
 
 export default function TimersList() {
+  const navigation = useNavigation();
   const timersList = useRecoilValue(filteredTimersListState);
   const [serverTimestamp, setServerTimestamp] = React.useState(0);
-  const [modalVisible, setModalVisible] = React.useState(false)
   const [serverStatus, setServerStatus] = React.useState(false);
   const [listSort, setListSort] = React.useState(false);
   const [tagsSort, setTagSort] = React.useState(false);
+  // on navigation.isFocused()
 
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
-  };
+  
 
   //// [FETCH DATA] ////
   // React.useEffect(() => {
@@ -45,6 +45,14 @@ export default function TimersList() {
       setServerTimestamp(e.data);
     };
   }, []);
+
+  //// [NAVIGATE TO EditTimerModal MODAL SCREEN FOR addTimer()] ////
+  const toggleModal = () => {
+    navigation.navigate('TimersEditModal', {
+      indexParam: 0,
+      modeParam: 'add',
+    })
+  };
 
   //// [FLATLIST SCROLL] ////
   const timerListRef = React.useRef(null);
@@ -103,12 +111,6 @@ export default function TimersList() {
         ListFooterComponent={ListFooterComponent()}
         // onContentSizeChange={handleScrollToEnd}
         // centerContent={true}
-      />
-      <EditTimerModal
-        modalVisible={modalVisible}
-        toggleModal={toggleModal}
-        scrollHandler={handleScrollToEnd}
-        mode='add'
       />
     </View>
     
