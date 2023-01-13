@@ -35,6 +35,14 @@ export default function Timer({
   const index = timersList.findIndex((item) => item === timer);
   // const timer = timersList[index];
 
+  //// [NAVIGATE TO EditTimerModal MODAL SCREEN TO EDIT TIMER DATA] ////
+  const toggleModal = () => {
+    navigation.navigate('TimersEditModal', {
+      indexParam: index,
+      modeParam: 'edit',
+    })
+  };
+
   //// [COMPONENTS] ////
   const TimerActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -59,11 +67,8 @@ export default function Timer({
           timer.isRunning ?
             stopTimerAlert()
           :
-            navigation.navigate('TimersEditModal', {
-              indexParam: index,
-              modeParam: 'edit',
-            })
-        };
+            toggleModal()
+        }
       }
     )
   };
@@ -76,11 +81,8 @@ export default function Timer({
         {
           text: "Stop Timer",
           onPress: () => {
-            handleTimer(index, timersList, setTimersList, serverTimestamp)
-            navigation.navigate('TimersEditModal', {
-              indexParam: index,
-              modeParam: 'edit',
-            })
+            handleTimer(index, timersList, setTimersList, serverTimestamp);
+            toggleModal();
           },
         },
         {
@@ -89,7 +91,7 @@ export default function Timer({
           style: "cancel",
         }
       ]
-    );
+    )
   };
 
   const Tag = ({ tag }) => (
