@@ -26,7 +26,6 @@ import {
 
 export default function Timer({
   timer,
-  timerIndex,
   serverTimestamp,
   scrollHandler
 }) {
@@ -34,8 +33,9 @@ export default function Timer({
   const [timersList, setTimersList] = useRecoilState(timersListState);
   const { HH, MM, SS } = displayProperTime(timer, serverTimestamp);
   const index = timersList.findIndex((item) => item === timer);
-  // const timer = timersList[timerIndex];
+  // const timer = timersList[index];
 
+  //// [COMPONENTS] ////
   const TimerActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -166,9 +166,10 @@ export default function Timer({
         </View>
       </Pressable>
 
-        <Pressable
-          style={[styles.container]}
-          onPress={TimerActionSheet}>
+      <Pressable
+        style={[styles.container]}
+        onPress={TimerActionSheet}
+      >
         <View style={[styles.container, styles.menuIconContainer]}>
             <MaterialIcons name='menu' size={24} color='black' />
         </View>
@@ -177,6 +178,7 @@ export default function Timer({
   )
 };
 
+//// [STYLES] ////
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -248,19 +250,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     minWidth: 32,
     textAlign: 'center',
-    // backgroundColor: 'green',
   },
   clockfaceDivider: {
     fontSize: 20,
     textAlign: 'center',
     minWidth: 6,
-    // backgroundColor: 'yellow',
   },
   clockfaceLabel: {
     fontSize: 20,
     minWidth: 32,
     textAlign: 'center',
-    // backgroundColor: 'blue',
   },
   menuIconContainer: {
     padding: 8,
