@@ -13,19 +13,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 import ListsDropdown from './timers/ListsDropdown';
 import TagsMultiSelect from './timers/TagsMultiSelect';
 
-const defaultTimer = {
-  name: '',
-  description: '',
-  list: '',
-  listPosition: false,
-  tags: [],
-  isRunning: false,
-  start: 0,
-  stop: 0,
-  elapsed: 0,
-  completed: false,
-};
-
 export default function EditModal({
   route,
   // scrollHandler,
@@ -56,6 +43,7 @@ export default function EditModal({
     completed: false,
   };
 
+  //// [SUBMIT THE NEW OR EDITED TIMER] ////
   const submitTimer = () => {
     if (modeParam === 'add') {
       const newIndex = timersList.length;
@@ -87,6 +75,7 @@ export default function EditModal({
     navigation.navigate('TimersScreen');
   };
 
+  //// [SCREEN COMPONENT] ////
   return (
     <View style={styles.wrapperContainer}>
       <View style={styles.container}>
@@ -123,9 +112,6 @@ export default function EditModal({
           tagsValue={tagsValue}
           setEditValue={setTagsValue}
         />
-        {/* <View style={styles.tagRow}>
-          {tagsValue.map((tag) => (<Tag tag={tag} key={`${tag}`} />))}
-        </View> */}
       </View>
 
       <View style={styles.container}>
@@ -172,6 +158,7 @@ export default function EditModal({
   )
 };
 
+//// [STYLES] ////
 const styles = StyleSheet.create({
   wrapperContainer: {
     paddingHorizontal: 32,
