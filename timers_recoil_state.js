@@ -3,8 +3,23 @@ import { atom, selector } from 'recoil';
 const timersListState = atom({
   key: 'timersListState',
   default: [
+    //// [START: placeholder for adding a new timer]
     {
       id: 0,
+      name: '',
+      description: '',
+      list: '',
+      listPosition: false,
+      tags: [],
+      isRunning: false,
+      start: 0,
+      stop: 0,
+      elapsed: 0,
+      isCompleted: false,
+    },
+    //// [END: placeholder for adding a new timer]
+    {
+      id: 1,
       name: 'Timer #1',
       description: 'hello',
       list: 'My First List',
@@ -15,20 +30,7 @@ const timersListState = atom({
       stop: 0,
       elapsed: 0,
       isCompleted: false,
-    }
-    // ,{
-    //   id: 1,
-    //   name: 'timer_1',
-    //   description: '',
-    //   list: 'List #2',
-    //   listPosition: false,
-    //   tags: [],
-    //   isRunning: false,
-    //   start: 0,
-    //   stop: 0,
-    //   elapsed: 0,
-    //   isCompleted: false,
-    // },
+    },
     // {
     //   id: 2,
     //   name: 'timer_2',
@@ -140,6 +142,8 @@ const filteredTimersListState = selector({
     const listed = get(listedFilterState);
     const tagged = get(taggedFilterState);
     const completed = get(timersCompletedFilterState);
+
+    list = [...list.slice(1)]
 
     if (listed !== 'All') {
       list = list.filter((timer) => listed == timer.list);
