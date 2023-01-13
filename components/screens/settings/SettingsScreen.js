@@ -246,14 +246,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'red', 
   },
   lightModeButton: {
-    marginRight: 16,
-    marginLeft: 8,
+    marginRight: 8,
+    marginLeft: 16,
   },
   darkModeButton: {
     marginHorizontal: 8,
   },
   systemModeButton: {
-    marginRight: 8,
-    marginLeft: 16,
+    marginRight: 16,
+    marginLeft: 8,
   },
 });
