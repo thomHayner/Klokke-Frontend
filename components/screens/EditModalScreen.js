@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import ListsDropdown from './timers/DropdownListsSelect';
+import ListSelect from './timers/DropdownListsSelect';
 import TagsMultiSelect from './timers/DropdownTagsMultiSelect';
 
 export default function EditModal({
@@ -98,7 +98,7 @@ export default function EditModal({
 
       <View style={styles.container}>
         <Text  style={styles.textLabel}>List</Text>
-        <ListsDropdown
+        <ListSelect
           mode={modeParam}
           listValue={listValue}
           setEditValue={setListValue}
