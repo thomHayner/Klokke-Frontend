@@ -2,8 +2,9 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View, } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import ListsDropdown from './DropdownListsSelect';
+import ListSelect from './DropdownListsSelect';
 import TimersList from './TimersList';
+import TagsMultiSelect from './DropdownTagsMultiSelect';
 
 const Stack = createStackNavigator();
 
@@ -21,9 +22,12 @@ export default function TimersScreen() {
         height: '100%',
       }}
     />
-    <View style={styles.listsDropdownWrapper}>
-      <ListsDropdown mode={'select'} />
+    <View style={styles.dropdownsContainer}>
+      <ListSelect mode={'select'} />
+      <View style={styles.dropdownsSpacer} />
+      <TagsMultiSelect mode={'select'} />
     </View>
+    <View style={styles.dropdownsSpacer} />
     <TimersList />
   </View>
   )
@@ -36,9 +40,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'start',
   },
-  listsDropdownWrapper: {
+  dropdownsContainer: {
     width: '100%',
     paddingTop: 8,
     paddingHorizontal: 16,
+    gap: 4,
+  },
+  dropdownsSpacer: {
+    paddingTop: 4,
   },
 });
