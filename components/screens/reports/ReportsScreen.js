@@ -1,10 +1,14 @@
-import { Text, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function ReportsScreen() {
   return (
-    <SafeAreaView style={styles.safeAreaContainer}>
+    <View style={styles.safeAreaContainer}>
       <LinearGradient
         // Background Linear Gradient
         colors={['rgba(36, 157, 255, 1)', 'transparent']}
@@ -18,7 +22,23 @@ export default function ReportsScreen() {
       />
       
       <Text>Reports!</Text>
-    </SafeAreaView>
+      
+      <View>
+        <Text>Date Range Filter GOES HERE</Text>
+        <Text>List Filter GOES HERE</Text>
+        <Text>Tags Filter GOES HERE</Text>
+      </View>
+      
+      <View>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+      </View>
+      
+      <View>
+        <Text>Email Report GOES HERE</Text>
+        <Text>Export to .pdf/.csv GOES HERE</Text>
+        <Text>Print Goes Here</Text>
+      </View>
+    </View>
   );
 };
 
