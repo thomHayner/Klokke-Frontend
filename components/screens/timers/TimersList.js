@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Timer from './Timer';
-import EditTimerModal from './EditTimerModal';
 
 export default function TimersList() {
   const navigation = useNavigation();
@@ -21,8 +20,6 @@ export default function TimersList() {
   const [listSort, setListSort] = React.useState(false);
   const [tagsSort, setTagSort] = React.useState(false);
   // on navigation.isFocused()
-
-  
 
   //// [FETCH DATA] ////
   // React.useEffect(() => {
