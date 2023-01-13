@@ -10,8 +10,8 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import ListsDropdown from './timers/ListsDropdown';
-import TagsMultiSelect from './timers/TagsMultiSelect';
+import ListsDropdown from './timers/DropdownListsSelect';
+import TagsMultiSelect from './timers/DropdownTagsMultiSelect';
 
 export default function EditModal({
   route,
