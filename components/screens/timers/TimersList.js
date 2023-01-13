@@ -53,7 +53,6 @@ export default function TimersList() {
 
   //// [FLATLIST SCROLL] ////
   const timerListRef = React.useRef(null);
-
   const handleScrollToEnd = () => {
     if (timerListRef.current) {
       timerListRef.current.scrollToEnd();
@@ -66,7 +65,6 @@ export default function TimersList() {
     return (
       <Timer
         timer={item}
-        timerIndex={index}
         serverTimestamp={serverTimestamp}
         scrollHandler={handleScrollToEnd}
       />
@@ -83,7 +81,7 @@ export default function TimersList() {
     )
   };
 
-    const ListFooterComponent = () => (
+  const ListFooterComponent = () => (
     <View style={styles.footer}>
       <Pressable onPress={toggleModal} style={styles.container}>
         <MaterialIcons name='add-circle-outline' size={24} color='black' />
