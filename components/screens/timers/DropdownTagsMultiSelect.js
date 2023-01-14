@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useRecoilState } from 'recoil';
 import { tagsListState } from '../../../recoil_store_state';
 import { timersTaggedFilterState } from '../../../recoil_timers_filter_state';
+import { reportTaggedFilterState } from '../../../recoil_report_filter_state';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 // https://www.npmjs.com/package/react-native-element-dropdown
 import { MultiSelect } from 'react-native-element-dropdown';
@@ -15,7 +16,12 @@ export default function TagsMultiSelect({
 }) {
   //// [STATE] ////
   const [tagsList, setTagsList] = useRecoilState(tagsListState);
-  const [filterTagsValue, setFilterTagsValue] = useRecoilState(timersTaggedFilterState);
+  const [filterTimerTagsValue, setFilterTimerTagsValue] = useRecoilState(
+    timersTaggedFilterState
+  );
+  const [filterReportTagsValue, setFilterReportTagsValue] = useRecoilState(
+    reportTaggedFilterState
+  );
   const [timerTagsValue, setTimerTagsValue] = React.useState(tagsValue);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('');
 
@@ -23,6 +29,30 @@ export default function TagsMultiSelect({
   React.useEffect(() => {
     setEditValue(timerTagsValue);
   }, [timerTagsValue]);
+
+  //// [HANDLE THE VALUE DISPLAYED WHEN COMPONENT IS COLLAPSED] ////
+  const handleValue = () => {
+    switch(mode) {
+      case 'filterTimers':
+        return filterTimerTagsValue
+      case 'filterReports':
+        return filterReportTagsValue
+      default:
+        return timerTagsValue
+    }
+  };
+  
+  //// [HANDLE SELECTING A TAG] ////
+  const handleOnChange = (tag) => {
+    switch(mode) {
+      case 'filterTimers':
+        return setFilterTimerTagsValue(tag)
+      case 'filterReports':
+        return setFilterReportTagsValue(tag)
+      default:
+        return setTimerTagsValue(tag)
+    }
+  };
 
   //// [ADD A NEW TAG GLOBALLY] ////
   const addTagGlobally = () => {
@@ -34,10 +64,10 @@ export default function TagsMultiSelect({
       ...oldTagsList,
       newTag,
     ]);
-    if (mode === 'select') {
-      const newFilterValue = [...filterTagsValue];
+    if (mode === 'filterTimers') {
+      const newFilterValue = [...filterTimerTagsValue];
       newFilterValue.push(onChangeInputValue)
-      setFilterTagsValue(newFilterValue);
+      setFilterTimerTagsValue(newFilterValue);
     };
     setOnChangeInputValue('');
   };
@@ -45,15 +75,15 @@ export default function TagsMultiSelect({
   //// [COMPONENT TO RENDER IF RECOIL search OR tagsListState IS EMPTY] ////
   const RenderEmpty = () => {
     return (
-      tagsList.length > 0 ?
+      mode === 'filterReports' ?
+        <View style={styles.emptyContainer}>
+          <Text>No Tags Found!</Text>
+        </View>
+      :
         <Pressable style={styles.emptyContainer} onPress={addTagGlobally}>
           <MaterialIcons name='playlist-add' size={24} color='black' />
           <Text>Create A New Tag</Text>
         </Pressable>
-      :
-        <View style={styles.emptyContainer}>
-          <Text>No Tags Found!</Text>
-        </View>
     )
   };
 
@@ -62,7 +92,6 @@ export default function TagsMultiSelect({
     return (
       <View style={styles.item}>
         <Text style={styles.selectedTextStyle}>{item.label}</Text>
-        {/* <MaterialIcons name='tag' size={24} color='black' /> */}
       </View>
     );
   };
@@ -81,55 +110,29 @@ export default function TagsMultiSelect({
   //// [MAIN COMPONENT] ////
   return (
     <View style={styles.dropdownWrapper}>
-      {mode === 'edit' || mode === 'add' ?
-        <MultiSelect
-          style={styles.dropdown}
-          containerStyle={styles.containerStyle}
-          placeholderStyle={styles.placeholderStyle}
-          selectedStyle={styles.selectedStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={tagsList}
-          value={timerTagsValue}
-          labelField='label'
-          valueField='value'
-          placeholder='Tags'
-          search
-          searchPlaceholder='Search Tags Or Create New Tag'
-          onChange={(tag) => setTimerTagsValue(tag)}
-          onChangeText={(search) => setOnChangeInputValue(search)}
-          renderItem={RenderItem}
-          renderSelectedItem={RenderSelectedItem}
-          flatListProps={{
-            ListEmptyComponent: <RenderEmpty />,
-          }}
-        />
-      :
-        <MultiSelect
-          style={styles.dropdown}
-          containerStyle={styles.containerStyle}
-          placeholderStyle={styles.placeholderStyle}
-          selectedStyle={styles.selectedStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={tagsList}
-          value={filterTagsValue}
-          labelField='label'
-          valueField='value'
-          placeholder='Tags'
-          search
-          searchPlaceholder='Search Tags Or Create New Tag'
-          onChange={(tag) => setFilterTagsValue(tag)}
-          onChangeText={(search) => setOnChangeInputValue(search)}
-          renderItem={RenderItem}
-          renderSelectedItem={RenderSelectedItem}
-          flatListProps={{
-            ListEmptyComponent: <RenderEmpty />,
-          }}
-        />
-      }
+      <MultiSelect
+        style={styles.dropdown}
+        containerStyle={styles.containerStyle}
+        placeholderStyle={styles.placeholderStyle}
+        selectedStyle={styles.selectedStyle}
+        selectedTextStyle={styles.selectedTextStyle}
+        inputSearchStyle={styles.inputSearchStyle}
+        iconStyle={styles.iconStyle}
+        data={tagsList}
+        value={handleValue()}
+        labelField='label'
+        valueField='value'
+        placeholder='Tags'
+        search
+        searchPlaceholder='Search Tags Or Create New Tag'
+        onChange={(tag) => handleOnChange(tag)}
+        onChangeText={(search) => setOnChangeInputValue(search)}
+        renderItem={RenderItem}
+        renderSelectedItem={RenderSelectedItem}
+        flatListProps={{
+          ListEmptyComponent: <RenderEmpty />,
+        }}
+      />
     </View>
   )
 };
