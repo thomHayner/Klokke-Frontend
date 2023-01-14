@@ -1,9 +1,9 @@
 //// [IMPORTS] ////
 import * as React from 'react';
 import { useRecoilState } from 'recoil';
-import { listsListState } from '../../../recoil_store_state';
-import { timersListedFilterState } from '../../../recoil_timers_filter_state';
-import { reportListedFilterState } from '../../../recoil_report_filter_state';
+import { listsListState } from '../recoil_store_state';
+import { timersListedFilterState } from '../recoil_timers_filter_state';
+import { reportListedFilterState } from '../recoil_report_filter_state';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 // https://www.npmjs.com/package/react-native-element-dropdown
 import { Dropdown } from 'react-native-element-dropdown';

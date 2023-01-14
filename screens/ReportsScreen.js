@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRecoilValue } from 'recoil';
-import { filteredReportListState } from '../../../recoil_report_filter_state';
+import { filteredReportListState } from '../recoil_report_filter_state';
 import {
   Pressable,
   ScrollView,
@@ -12,14 +12,14 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import ListSelect from '../timers/DropdownListsSelect';
-import TagsMultiSelect from '../timers/DropdownTagsMultiSelect';
+import ListSelect from '../components/DropdownListsSelect';
+import TagsMultiSelect from '../components/DropdownTagsMultiSelect';
 import {
   print,
   printToPdfFile,
   selectPrinter,
-} from './utils/exportReportUtils';
-import DoubleDatePicker from './DoubleDatePicker';
+} from '../utilities/exportReportUtils';
+import DoubleDatePicker from '../components/reports/DoubleDatePicker';
 
 export default function ReportsScreen() {
   // const [selectedPrinter, setSelectedPrinter] = React.useState();

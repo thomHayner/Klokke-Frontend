@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useRecoilState } from 'recoil';
-import { timersListState } from '../../../recoil_store_state';
+import { timersListState } from '../../recoil_store_state';
 import {
   View,
   Text,
@@ -22,7 +22,7 @@ import {
   resetTimer,
   handleComplete,
   deleteTimer,
-} from '../../../utilities/timersFunctions';
+} from '../../utilities/timersFunctions';
 
 export default function Timer({
   timer,

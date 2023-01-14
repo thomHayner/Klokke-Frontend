@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useRecoilState } from 'recoil';
-import { timersListState } from '../../recoil_store_state';
+import { timersListState } from '../recoil_store_state';
 import {
   Pressable,
   StyleSheet,
@@ -10,8 +10,8 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import ListSelect from './timers/DropdownListsSelect';
-import TagsMultiSelect from './timers/DropdownTagsMultiSelect';
+import ListSelect from '../components/DropdownListsSelect';
+import TagsMultiSelect from '../components/DropdownTagsMultiSelect';
 
 export default function EditModal({
   route,

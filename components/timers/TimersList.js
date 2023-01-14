@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useRecoilValue } from 'recoil';
-import { filteredTimersListState } from '../../../recoil_timers_filter_state';
+import { filteredTimersListState } from '../../recoil_timers_filter_state';
 import {
   FlatList,
   Pressable,

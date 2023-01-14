@@ -2,9 +2,9 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, View, } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import ListSelect from './DropdownListsSelect';
-import TimersList from './TimersList';
-import TagsMultiSelect from './DropdownTagsMultiSelect';
+import ListSelect from '../components/DropdownListsSelect';
+import TagsMultiSelect from '../components/DropdownTagsMultiSelect';
+import TimersList from '../components/timers/TimersList';
 
 const Stack = createStackNavigator();
 
