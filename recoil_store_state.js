@@ -94,8 +94,8 @@ const listsListState = atom({
   ],
 });
 
-const taggedFilterState = atom({
-  key: 'taggedFilterState',
+const timersTaggedFilterState = atom({
+  key: 'timersTaggedFilterState',
   default: [],
 });
 
@@ -140,7 +140,7 @@ const filteredTimersListState = selector({
   get: ({ get }) => {
     let list = get(timersListState);
     const listed = get(listedFilterState);
-    const tagged = get(taggedFilterState);
+    const tagged = get(timersTaggedFilterState);
     const completed = get(timersCompletedFilterState);
 
     list = [...list.slice(1)]
@@ -180,6 +180,6 @@ export {
   listsListState,
   listedFilterState,
   tagsListState,
-  taggedFilterState,
+  timersTaggedFilterState,
   filteredTimersListState,
 }
