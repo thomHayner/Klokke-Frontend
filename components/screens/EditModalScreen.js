@@ -45,7 +45,7 @@ export default function EditModal({
 
   //// [SUBMIT THE NEW OR EDITED TIMER] ////
   const submitTimer = () => {
-    if (modeParam === 'add') {
+    if (modeParam === 'addTimer') {
       const newIndex = timersList.length;
       setTimersList((oldTimersList) => [
         ...oldTimersList,
@@ -55,7 +55,7 @@ export default function EditModal({
         }
       ])
     };
-    if (modeParam === 'edit') {
+    if (modeParam === 'editTimer') {
       setTimersList((oldTimersList) => [
         ...oldTimersList.slice(0, index),
         {
