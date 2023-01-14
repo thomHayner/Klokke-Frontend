@@ -6,7 +6,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -37,96 +36,91 @@ export default function ReportsScreen() {
           height: '100%',
         }}
       />
+      <View style={styles.filtersContainer}>
+        <DoubleDatePicker />
+        <View style={styles.dropdownsSpacer} />
+        <ListSelect mode={'filterReports'} />
+        <View style={styles.dropdownsSpacer} />
+        <TagsMultiSelect mode={'filterReports'} />
+      </View>
 
-        <View style={styles.container}>
-          <View style={[styles.sectionHeader, styles.row]}>
-            <Text style={styles.sectionHeaderText}>Filter</Text>
-            <MaterialIcons
-              name="filter-list"
-              size={24}
-              color="black"
-              style={styles.icon}
-            />
-          </View>
-
-          <View style={styles.sectionBody}>
-            <View style={styles.dropdownsContainer}>
-              <DoubleDatePicker />
-              <View style={styles.dropdownsSpacer} />
-              <ListSelect mode={'filterReports'} />
-              <View style={styles.dropdownsSpacer} />
-              <TagsMultiSelect mode={'filterReports'} />
-            </View>
-          </View>
-        </View>
-        
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
-
-        <View style={styles.container}>
-          <View style={[styles.sectionHeader, styles.row]}>
-            <Text style={styles.sectionHeaderText}>Time Sheet</Text>
-            <MaterialIcons
-              name="calendar-today"
-              size={22}
-              color="black"
-              style={styles.icon}
-            />
-          </View>
-          <View style={styles.sectionBody}>
-            <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-          </View>
-        </View>
-
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
       </ScrollView>
 
-        <View style={styles.container}>
-          <View style={[styles.sectionHeader, styles.row]}>
-            <Text style={styles.sectionHeaderText}>Export</Text>
-            <MaterialIcons
-              name="import-export"
-              size={24}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.sectionHeaderText}>or Print</Text>
-            <MaterialIcons
-              name="print"
-              size={24}
-              color="black"
-              style={styles.icon}
-            />
-          </View>
-
-          <View style={[styles.sectionBody, styles.row]}>
-            <Pressable
-              style={[styles.buttonBorder, styles.leftButton]}
-              onPress={() => {}}
-            >
-              <FontAwesome5 name="file-csv" size={24} color="black" />
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.centerButton]}
-              onPress={printToPdfFile}
-            >
-              <MaterialIcons name="picture-as-pdf" size={24} color="black" />
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.centerButton]}
-              onPress={print}
-            >
-              <MaterialIcons name="print" size={24} color="black" />
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.rightButton]}
-              onPress={() => {}}
-            >
-              <MaterialIcons name="email" size={24} color="black" />
-            </Pressable>
-          </View>
-        </View>
+      <View style={styles.exportsContainer}>
+        <Pressable
+          style={[styles.buttonBorder, styles.leftButton]}
+          onPress={() => {}}
+        >
+          <FontAwesome5 name="file-csv" size={24} color="black" />
+        </Pressable>
+        <Pressable
+          style={[styles.buttonBorder, styles.centerButton]}
+          onPress={printToPdfFile}
+        >
+          <MaterialIcons name="picture-as-pdf" size={24} color="black" />
+        </Pressable>
+        <Pressable
+          style={[styles.buttonBorder, styles.centerButton]}
+          onPress={print}
+        >
+          <MaterialIcons name="print" size={24} color="black" />
+        </Pressable>
+        <Pressable
+          style={[styles.buttonBorder, styles.rightButton]}
+          onPress={() => {}}
+        >
+          <MaterialIcons name="email" size={24} color="black" />
+        </Pressable>
+      </View>
 
     </View>
   );
@@ -136,51 +130,22 @@ const styles = StyleSheet.create({
   wrapperContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 32,
-    paddingTop: 8,
-    paddingBottom: 0,
-  },
-  scrollView: {
-    flex: 1,
-    width: '100%',
-  },
-  container: {
-    width: '100%',
-    alignItems: 'start',
-    justifyContent: 'center',
-    paddingVertical: 12,
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  sectionHeader: {
-    width: '100%',
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
-    alignItems: 'end',
-    alignContent: 'end',
-    marginVertical: 8,
-  },
-  sectionHeaderText: {
-    fontSize: 20,
-  },
-  sectionBody: {
-    width: '100%',
+    justifyContent: 'start',
     paddingHorizontal: 16,
-    alignItems: 'center',
   },
-  icon: {
-    marginLeft: 3,
-  },
-  dropdownsContainer: {
+  filtersContainer: {
     width: '100%',
-    paddingTop: 8,
-    gap: 4,
+    paddingVertical: 4,
   },
   dropdownsSpacer: {
     paddingTop: 4,
+  },
+  scrollView: {
+    width: '100%',
+  },
+  exportsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   buttonBorder: {
     flex: 1,
@@ -196,16 +161,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   leftButton: {
-    // marginRight: 8,
-    // marginLeft: 16,
-    marginHorizontal: 8,
+    marginRight: 8,
   },
   centerButton: {
     marginHorizontal: 8,
   },
   rightButton: {
-    // marginRight: 16,
-    // marginLeft: 8,
-    marginHorizontal: 8,
+    marginLeft: 8,
   },
 });
