@@ -17,7 +17,7 @@ import {
   printToPdfFile,
   selectPrinter,
 } from './utils/exportReportUtils';
-import DatePicker from './DatePicker';
+import DoubleDatePicker from './DoubleDatePicker';
 
 export default function ReportsScreen() {
   // const [selectedPrinter, setSelectedPrinter] = React.useState();
@@ -49,8 +49,7 @@ export default function ReportsScreen() {
           <View style={styles.sectionBody}>
             <View style={styles.dropdownsContainer}>
               <View style={[styles.row, { width: '100%', }]}>
-                <DatePicker startOrEnd='start' />
-                <DatePicker startOrEnd='end' />
+                <DoubleDatePicker />
               </View>
               <View style={styles.dropdownsSpacer} />
               <ListSelect mode={'select'} />
