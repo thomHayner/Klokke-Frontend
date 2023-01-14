@@ -23,9 +23,9 @@ export default function TimersScreen() {
       }}
     />
     <View style={styles.dropdownsContainer}>
-      <ListSelect mode={'select'} />
+      <ListSelect mode={'filterTimers'} />
       <View style={styles.dropdownsSpacer} />
-      <TagsMultiSelect mode={'select'} />
+      <TagsMultiSelect mode={'filterTimers'} />
     </View>
     <View style={styles.dropdownsSpacer} />
     <TimersList />

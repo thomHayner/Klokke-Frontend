@@ -47,7 +47,7 @@ export default function TimersList() {
   const toggleModal = () => {
     navigation.navigate('TimersEditModal', {
       indexParam: 0,
-      modeParam: 'add',
+      modeParam: 'addTimer',
     })
   };
 
