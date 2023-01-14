@@ -17,6 +17,7 @@ import {
   printToPdfFile,
   selectPrinter,
 } from './utils/exportReportUtils';
+import DatePicker from './DatePicker';
 
 export default function ReportsScreen() {
   // const [selectedPrinter, setSelectedPrinter] = React.useState();
@@ -47,7 +48,10 @@ export default function ReportsScreen() {
 
           <View style={styles.sectionBody}>
             <View style={styles.dropdownsContainer}>
-              <Text>Date Range Filter GOES HERE</Text>
+              <View style={[styles.row, { width: '100%', }]}>
+                <DatePicker startOrEnd='start' />
+                <DatePicker startOrEnd='end' />
+              </View>
               <View style={styles.dropdownsSpacer} />
               <ListSelect mode={'select'} />
               <View style={styles.dropdownsSpacer} />
@@ -192,14 +196,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   leftButton: {
-    marginRight: 8,
-    marginLeft: 16,
+    // marginRight: 8,
+    // marginLeft: 16,
+    marginHorizontal: 8,
   },
   centerButton: {
     marginHorizontal: 8,
   },
   rightButton: {
-    marginRight: 16,
-    marginLeft: 8,
+    // marginRight: 16,
+    // marginLeft: 8,
+    marginHorizontal: 8,
   },
 });
