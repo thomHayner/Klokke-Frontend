@@ -48,13 +48,11 @@ export default function ReportsScreen() {
 
           <View style={styles.sectionBody}>
             <View style={styles.dropdownsContainer}>
-              <View style={[styles.row, { width: '100%', }]}>
-                <DoubleDatePicker />
-              </View>
+              <DoubleDatePicker />
               <View style={styles.dropdownsSpacer} />
-              <ListSelect mode={'select'} />
+              <ListSelect mode={'filterReports'} />
               <View style={styles.dropdownsSpacer} />
-              <TagsMultiSelect mode={'select'} />
+              <TagsMultiSelect mode={'filterReports'} />
             </View>
           </View>
         </View>
