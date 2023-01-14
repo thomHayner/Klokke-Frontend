@@ -1,11 +1,9 @@
 //// [IMPORTS] ////
 import * as React from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { useRecoilState } from 'recoil';
-import {
-  taggedFilterState,
-  tagsListState
-} from '../../../timers_recoil_state';
+import { tagsListState } from '../../../recoil_store_state';
+import { timersTaggedFilterState } from '../../../recoil_timers_filter_state';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
 // https://www.npmjs.com/package/react-native-element-dropdown
 import { MultiSelect } from 'react-native-element-dropdown';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -17,7 +15,7 @@ export default function TagsMultiSelect({
 }) {
   //// [STATE] ////
   const [tagsList, setTagsList] = useRecoilState(tagsListState);
-  const [filterTagsValue, setFilterTagsValue] = useRecoilState(taggedFilterState);
+  const [filterTagsValue, setFilterTagsValue] = useRecoilState(timersTaggedFilterState);
   const [timerTagsValue, setTimerTagsValue] = React.useState(tagsValue);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('');
 

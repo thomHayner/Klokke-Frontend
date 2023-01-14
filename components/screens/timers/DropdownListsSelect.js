@@ -1,11 +1,9 @@
 //// [IMPORTS] ////
 import * as React from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { useRecoilState } from 'recoil';
-import {
-  listedFilterState,
-  listsListState
-} from '../../../timers_recoil_state';
+import { listsListState } from '../../../recoil_store_state';
+import { timersListedFilterState } from '../../../recoil_timers_filter_state';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
 // https://www.npmjs.com/package/react-native-element-dropdown
 import { Dropdown } from 'react-native-element-dropdown';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -17,7 +15,7 @@ export default function ListSelect({
 }) {
   //// [STATE] ////
   const [lists, setLists] = useRecoilState(listsListState);
-  const [filterListValue, setFilterListValue] = useRecoilState(listedFilterState);
+  const [filterListValue, setFilterListValue] = useRecoilState(timersListedFilterState);
   const [timerSelectedList, setTimerSelectedList] = React.useState(listValue);
   const [onChangeInputValue, setOnChangeInputValue] = React.useState('');
 
