@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useRecoilValue } from 'recoil';
+import { filteredReportListState } from '../../../recoil_report_filter_state';
 import {
   Pressable,
   ScrollView,
@@ -21,6 +23,7 @@ import DoubleDatePicker from './DoubleDatePicker';
 
 export default function ReportsScreen() {
   // const [selectedPrinter, setSelectedPrinter] = React.useState();
+  const timersList = useRecoilValue(filteredReportListState);
 
   return (
     <View style={styles.wrapperContainer}>
