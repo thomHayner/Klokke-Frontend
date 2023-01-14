@@ -103,10 +103,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   dropdown: {
-    // backgroundColor: '#DDDDDD',
-    // paddingHorizontal: 16,
-    // paddingVertical: 8,
-    // borderRadius: 8,
     height: 50,
     backgroundColor: 'white',
     borderRadius: 8,
@@ -127,6 +123,5 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     borderRadius: 8,
-    // marginTop: 4,
   },
 });
