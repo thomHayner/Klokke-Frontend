@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
+import AccountSettings from '../components/settings/Account';
 
 export default function SettingsScreen() {
   return (
@@ -32,29 +33,7 @@ export default function SettingsScreen() {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionHeaderText}>Account</Text>
           </View>
-          <View style={styles.sectionBody}>
-            <View style={styles.circle}>
-              <Text>Avatar</Text>
-            </View>
-            <TextInput
-              style={styles.input}
-              onChangeText={() => {}}
-            >
-              UserName GOES HERE
-            </TextInput>
-            <TextInput
-              style={styles.input}
-              onChangeText={() => {}}
-            >
-              Email GOES HERE
-            </TextInput>
-            <TextInput
-              style={styles.input}
-              onChangeText={() => {}}
-            >
-              Password GOES HERE
-            </TextInput>
-          </View>
+          <AccountSettings />
         </View>
 
         <View style={styles.container}>
