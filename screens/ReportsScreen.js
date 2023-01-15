@@ -19,6 +19,7 @@ import {
   selectPrinter,
 } from '../utilities/exportReportUtils';
 import DoubleDatePicker from '../components/reports/DoubleDatePicker';
+// import ChartComponent from '../components/reports/TimeSheetReport';
 
 export default function ReportsScreen() {
   // const [selectedPrinter, setSelectedPrinter] = React.useState();
@@ -48,51 +49,52 @@ export default function ReportsScreen() {
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
-        <Text>Chart / Graph / TimeSheet GOES HERE</Text>
+        {/* <ChartComponent /> */}
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
+        <Text style={styles.placeholdertexttobedeleted}>{`Chart / Graph / TimeSheet GOES HERE:\n...first...\nexpo install react-native-charts-wrapper\n...then...\nexpo needs to be ejected before it will work\n\n`}</Text>
       </ScrollView>
 
       <View style={styles.exportsContainer}>
@@ -168,5 +170,8 @@ const styles = StyleSheet.create({
   },
   rightButton: {
     marginLeft: 8,
+  },
+  placeholdertexttobedeleted: {
+    textAlign: 'center',
   },
 });
