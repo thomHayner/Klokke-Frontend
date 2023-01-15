@@ -19,7 +19,7 @@ import {
   selectPrinter,
 } from '../utilities/exportReportUtils';
 import DoubleDatePicker from '../components/reports/DoubleDatePicker';
-// import ChartComponent from '../components/reports/TimeSheetReport';
+// import ChartComponent from '../components/reports/Charts';
 
 export default function ReportsScreen() {
   // const [selectedPrinter, setSelectedPrinter] = React.useState();
