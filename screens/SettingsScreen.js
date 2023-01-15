@@ -9,6 +9,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
 import AccountSettings from '../components/settings/Account';
+import PremiumSettings from '../components/settings/Premium';
 
 export default function SettingsScreen() {
   return (
@@ -41,23 +42,7 @@ export default function SettingsScreen() {
             <Text style={styles.sectionHeaderText}>Premium</Text>
           </View>
 
-          <View style={styles.sectionBody}>
-            <View style={{ alignSelf: 'start', }}>
-              <Text>Premium Features Include:</Text>
-              <View style={[styles.container, { paddingLeft: 16 }]}>
-                <Text>- Cloud Storage</Text>
-                <Text>- Cross Platform Timers</Text>
-                <Text>- Smart Watch Apps for iOS and Android</Text>
-                <Text>- Desktop, Mobile and Browser Widgets</Text>
-              </View>
-            </View>
-            <Pressable
-              style={[styles.buttonBorder, styles.premiumButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Go Premium!</Text>
-            </Pressable>
-          </View>
+          <PremiumSettings />
         </View>
 
         <View style={styles.container}>
