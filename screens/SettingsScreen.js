@@ -10,6 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
 import AccountSettings from '../components/settings/Account';
 import PremiumSettings from '../components/settings/Premium';
+import ListsEditorSettings from '../components/settings/ListsEditor';
 
 export default function SettingsScreen() {
   return (
@@ -41,7 +42,6 @@ export default function SettingsScreen() {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionHeaderText}>Premium</Text>
           </View>
-
           <PremiumSettings />
         </View>
 
@@ -49,21 +49,7 @@ export default function SettingsScreen() {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionHeaderText}>Lists</Text>
           </View>
-
-          <View style={[styles.sectionBody, styles.row]}>
-            <Pressable
-              style={[styles.buttonBorder, styles.addButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Add New List</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.deleteButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Delete List</Text>
-            </Pressable>
-          </View>
+          <ListsEditorSettings />
         </View>
 
         <View style={styles.container}>
