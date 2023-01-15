@@ -11,6 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import AccountSettings from '../components/settings/Account';
 import PremiumSettings from '../components/settings/Premium';
 import ListsEditorSettings from '../components/settings/ListsEditor';
+import TagsEditorSettings from '../components/settings/TagsEditor';
 
 export default function SettingsScreen() {
   return (
@@ -56,21 +57,7 @@ export default function SettingsScreen() {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionHeaderText}>Tags</Text>
           </View>
-
-          <View style={[styles.sectionBody, styles.row, { marginTop: 0, }]}>
-            <Pressable
-              style={[styles.buttonBorder, styles.addButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Add New Tag</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.deleteButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Delete Tag</Text>
-            </Pressable>
-          </View>
+          <TagsEditorSettings />
         </View>
 
         <View style={styles.container}>
