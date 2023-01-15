@@ -12,6 +12,7 @@ import AccountSettings from '../components/settings/Account';
 import PremiumSettings from '../components/settings/Premium';
 import ListsEditorSettings from '../components/settings/ListsEditor';
 import TagsEditorSettings from '../components/settings/TagsEditor';
+import ThemeSettings from '../components/settings/Theme';
 
 export default function SettingsScreen() {
   return (
@@ -64,32 +65,12 @@ export default function SettingsScreen() {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionHeaderText}>App Theme</Text>
           </View>
-
-          <View style={[styles.sectionBody, styles.row]}>
-            <Pressable
-              style={[styles.buttonBorder, styles.lightModeButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Light</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.darkModeButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>Dark</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.buttonBorder, styles.systemModeButton]}
-              onPress={() => {}}
-            >
-              <Text style={styles.buttonLabel}>System</Text>
-            </Pressable>
-          </View>
+          <ThemeSettings />
         </View>
 
       </ScrollView>
     </View>
-  );
+  )
 };
 
 const styles = StyleSheet.create({
