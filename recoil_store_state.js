@@ -1,4 +1,9 @@
-import { atom, selector } from 'recoil';
+// These are the state variables used across the entire app.
+// They will be backed up to persistent storage for all users, and synced.
+// For premium users, they will also be backed up to cloud storage to enable
+// cross-platform app usage.
+
+import { atom } from 'recoil';
 
 const timersListState = atom({
   key: 'timersListState',
@@ -21,55 +26,16 @@ const timersListState = atom({
     {
       id: 1,
       name: 'Timer #1',
-      description: 'hello',
+      description: 'My First Timer',
       list: 'My First List',
       listPosition: false,
-      tags: ['Work', 'Gym'],
+      tags: ['Study'],
       isRunning: false,
       start: 0,
       stop: 0,
       elapsed: 0,
       isCompleted: false,
     },
-    // {
-    //   id: 2,
-    //   name: 'timer_2',
-    //   description: '',
-    //   list: '',
-    //   listPosition: false,
-    //   tags: [],
-    //   isRunning: false,
-    //   start: 0,
-    //   stop: 0,
-    //   elapsed: 0,
-    //   isCompleted: true,
-    // },
-    // {
-    //   id: 3,
-    //   name: 'timer_3',
-    //   description: '',
-    //   list: '',
-    //   listPosition: false,
-    //   tags: [],
-    //   isRunning: false,
-    //   start: 0,
-    //   stop: 0,
-    //   elapsed: 0,
-    //   isCompleted: false,
-    // },
-    // {
-    //   id: 4,
-    //   name: 'timer_4',
-    //   description: '',
-    //   list: '',
-    //   listPosition: false,
-    //   tags: [],
-    //   isRunning: false,
-    //   start: 0,
-    //   stop: 0,
-    //   elapsed: 0,
-    //   isCompleted: true,
-    // }
   ],
 });
 
