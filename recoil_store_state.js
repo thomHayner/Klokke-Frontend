@@ -17,10 +17,10 @@ const timersListState = atom({
       listPosition: false,
       tags: [],
       isRunning: false,
+      isCompleted: false,
       start: 0,
       stop: 0,
       elapsed: 0,
-      isCompleted: false,
     },
     //// [END: placeholder for adding a new timer]
     {
@@ -31,10 +31,10 @@ const timersListState = atom({
       listPosition: false,
       tags: ['Study'],
       isRunning: false,
+      isCompleted: false,
       start: 0,
       stop: 0,
       elapsed: 0,
-      isCompleted: false,
     },
   ],
 });
@@ -60,13 +60,13 @@ const tagsListState = atom({
   default:[
     {
       id: 0,
-      label: 'Work',
-      value: 'Work',
+      label: 'All Tags',
+      value: 'All Tags',
     },
     {
       id: 1,
-      label: 'Gym',
-      value: 'Gym',
+      label: 'Work',
+      value: 'Work',
     },
     {
       id: 2,
@@ -75,11 +75,16 @@ const tagsListState = atom({
     },
     {
       id: 3,
+      label: 'Gym',
+      value: 'Gym',
+    },
+    {
+      id: 4,
       label: 'Cooking',
       value: 'Cooking',
     },
     {
-      id: 4,
+      id: 5,
       label: 'Laundry',
       value: 'Laundry',
     },
