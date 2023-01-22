@@ -7,26 +7,35 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import { Orbitron_900Black, useFonts } from '@expo-google-fonts/orbitron';
 import BottomNav from './screens/BottomNav';
+import { loadDatabase } from './utilities/sqlite_loadDatabase';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  //// [CHECK THE FONT LOADING AT START] ////
   let [fontsLoaded] = useFonts({
     Orbitron_900Black,
   });
+  
+  //// [CHECK THE DATABASE LOADING AT START] ////
+  const [dbLoaded, setDbLoaded] = React.useState(false);
+  React.useEffect(()=> {
+    loadDatabase().then(() => setDbLoaded(true));
+  },[]);
 
-  //// [SPLASHSCREEN FOR FONT LOADING] ////
+  //// [SPLASHSCREEN FOR FONT AND DATABASE LOADING] ////
   const onLayoutRootView = React.useCallback(async () => {
-    if (fontsLoaded) {
+    if (fontsLoaded && dbLoaded) {
       await SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, dbLoaded]);
   
-  if (!fontsLoaded) {
+  if (!fontsLoaded && ! dbLoaded) {
     return null;
   }
 
+  //// [COMPONENT] ////
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <RecoilRoot>
