@@ -31,7 +31,7 @@
     "recoil": "^0.7.6",
     "recoil-sync": "^0.2.0",
     "expo-file-system": "~15.1.1",
-    "expo-asset": "~8.7.0"
+    "expo-asset": "~8.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
